@@ -9,7 +9,7 @@ export class Board {
   }
 
   drop(c) {
-    if (this.falling) {
+    if (this.hasFalling()) {
       throw new Error("already falling")
     }
     this.falling = { c, x: 1, y: 0 }
