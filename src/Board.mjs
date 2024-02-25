@@ -19,6 +19,10 @@ export class Board {
     this.falling.y++
   }
 
+  hasFalling() {
+    return !!this.falling
+  }
+
   drawRow(x = 0, y = 0, row = "") {
     if (x >= this.width) return row
     if (this.falling?.x === x && this.falling?.y === y) return this.drawRow(x + 1, y, row + this.falling.c)
