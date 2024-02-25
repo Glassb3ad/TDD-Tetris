@@ -11,6 +11,11 @@ export class Board {
   drop(c) {
     this.falling = { c, x: 1, y: 0 }
   }
+
+  tick() {
+    this.falling.y++
+  }
+
   drawRow(x = 0, y = 0, row = "") {
     if (x >= this.width) return row
     if (this.falling?.x === x && this.falling?.y === y) return this.drawRow(x + 1, y, row + this.falling.c)
