@@ -15,10 +15,13 @@ export class RotatingShape {
     };
 
     rotateLeft() {
-        const rotated = this.shape.map((row, i) => row.map((_, j) => this.shape[j][this.shape.length - 1 - i]))
-        return new RotatingShape(rotated)
+        return this.rotate((x, y) => this.shape[x][this.shape.length - 1 - y])
     };
 
+
+    rotate(getCell) {
+        return new RotatingShape(this.shape.map((row, y) => row.map((_, x) => getCell(x, y))))
+    };
 
     toString() {
         return this.shape.reduce((pre, cur) => `${pre}${cur.join("")}\n`, "")
