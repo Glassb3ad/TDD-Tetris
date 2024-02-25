@@ -17,8 +17,12 @@ export class Board {
     this.falling = { c, x: 1, y: this.height - 1 }
   }
 
+  canFall(x, y) {
+    return this.falling.y === 0 || this.dropped.has(`${x}${y - 1}`)
+  }
+
   tick() {
-    if (this.falling.y === 0) {
+    if (this.canFall(this.falling.x, this.falling.y)) {
       this.dropped.set(`${this.falling.x}${this.falling.y}`, this.falling.c)
       this.falling = null
     }
