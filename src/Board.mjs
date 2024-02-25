@@ -29,11 +29,15 @@ export class Board {
     return !!this.falling
   }
 
+  drawXY(x, y) {
+    if (this.falling?.x === x && this.falling?.y === y) { return this.falling.c }
+    if (this.dropped.has(`${x}${y}`)) { return this.dropped.get(`${x}${y}`) }
+    return "."
+  }
+
   drawRow(x = 0, y = this.height, row = "") {
     if (x >= this.width) return row
-    if (this.falling?.x === x && this.falling?.y === y) return this.drawRow(x + 1, y, row + this.falling.c)
-    if (this.dropped.has(`${x}${y}`)) { return this.drawRow(x + 1, y, row + this.dropped.get(`${x}${y}`)) }
-    return this.drawRow(x + 1, y, row + ".")
+    return this.drawRow(x + 1, y, row + this.drawXY(x, y))
   }
 
   drawBoard(y = this.height - 1, board = "") {
