@@ -6,10 +6,15 @@ export class RotatingShape {
     }
 
     static fromString(shape) {
-        return new RotatingShape(shape.split("\n").map(row => row.trim()))
+        return new RotatingShape(shape.split("\n").map(row => row.trim().split("")))
     }
 
+    rotateRight() {
+        const rotated = this.shape.map((row, i) => row.map((_, j) => this.shape[this.shape.length - 1 - j][i]))
+        return new RotatingShape(rotated)
+    };
+
     toString() {
-        return this.shape.reduce((pre, cur) => `${pre}${cur}\n`, "")
+        return this.shape.reduce((pre, cur) => `${pre}${cur.join("")}\n`, "")
     }
 }
