@@ -20,6 +20,7 @@ export class Tetromino {
     }
 
     rotateRight() {
+        if (this.shape.shape.some(a => a.includes("O"))) return this.shape
         return this.shape.rotateRight()
     }
 
