@@ -13,6 +13,7 @@ export class Tetromino {
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."]
     ])
+    static O_SHAPE = new Tetromino([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]])
 
     toString() {
         return this.shape.toString()
