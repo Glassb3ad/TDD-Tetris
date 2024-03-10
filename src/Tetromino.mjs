@@ -27,6 +27,7 @@ export class Tetromino {
 
     rotateLeft() {
         if (this.shape.shape[2][0] === "I") return this.rotateRight()
+        if (this.shape.shape.some(a => a.includes("O"))) return this
         return new Tetromino(this.shape.rotateLeft().shape)
     }
 
