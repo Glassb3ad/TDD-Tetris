@@ -23,7 +23,7 @@ export class Tetromino {
     }
 
     rotateLeft() {
-        return this.shape.rotateLeft()
+        return new Tetromino(this.shape.rotateLeft().shape.reverse())
     }
 
 }
