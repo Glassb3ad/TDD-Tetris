@@ -15,6 +15,7 @@ export class Board {
       (this.falling.x <= x && x <= this.falling.x + (this.falling.c[0].length - 1))
       && (y <= this.falling.y && y >= this.falling.y - (this.falling.c.length - 1))
   }
+  fallingCharOccupies(x, y) { return this.fallingOccupiesXY(x, y) && this.falling.c[this.falling.y - y][x - this.falling.x] !== "." }
 
   drop(c) {
     if (this.hasFalling()) {
@@ -24,16 +25,20 @@ export class Board {
     this.falling = { c: shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1 }
   }
 
-  canFall(x, y) {
-    return this.falling.y === 0 || this.dropped.has(`${x}${y - 1}`)
+  canFall(falling) {
+    return falling && !(Array(this.width).fill(0).map((_, index) => index).some(x => this.fallingCharOccupies(x, 0)) || this.dropped.has(`${falling.x}${falling.y - 1}`))
   }
 
   tick() {
-    if (this.canFall(this.falling.x, this.falling.y)) {
-      this.dropped.set(`${this.falling.x}${this.falling.y}`, this.falling.c)
+    if (this.canFall(this.falling)) {
+      this.falling = { ...this.falling, y: this.falling.y - 1 }
+    }
+    else {
+      for (let y = 0; y < this.height; y++) {
+        for (let x = 0; x < this.width; x++) { if (this.fallingCharOccupies(x, y)) { this.dropped.set(`${x}${y}`, this.falling.c[this.falling.y - y][x - this.falling.x]) } }
+      }
       this.falling = null
     }
-    else this.falling.y--
   }
 
   hasFalling() {
