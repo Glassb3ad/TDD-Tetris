@@ -10,6 +10,12 @@ export class Board {
     this.dropped = new Map();
   }
 
+  fallingOccupiesXY(x, y) {
+    return this.falling &&
+      (this.falling.x <= x && x <= this.falling.x + (this.falling.c[0].length - 1))
+      && (y <= this.falling.y && y >= this.falling.y - (this.falling.c.length - 1))
+  }
+
   drop(c) {
     if (this.hasFalling()) {
       throw new Error("already falling")
@@ -35,9 +41,7 @@ export class Board {
   }
 
   drawXY(x, y) {
-    if (this.falling &&
-      (this.falling.x <= x && x <= this.falling.x + (this.falling.c[0].length - 1))
-      && (y <= this.falling.y && y >= this.falling.y - (this.falling.c.length - 1))) {
+    if (this.fallingOccupiesXY(x, y)) {
       return this.falling.c[this.falling.y - y][x - this.falling.x]
     }
     if (this.dropped.has(`${x}${y}`)) { return this.dropped.get(`${x}${y}`) }
