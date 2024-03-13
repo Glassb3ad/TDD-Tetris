@@ -14,7 +14,8 @@ export class Board {
     if (this.hasFalling()) {
       throw new Error("already falling")
     }
-    this.falling = { c, x: 1, y: this.height - 1 }
+    const shape = c.toString().split("\n").map(a => a.split("")).filter(a => a[0])
+    this.falling = { c: shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1 }
   }
 
   canFall(x, y) {
@@ -34,7 +35,11 @@ export class Board {
   }
 
   drawXY(x, y) {
-    if (this.falling?.x === x && this.falling?.y === y) { return this.falling.c }
+    if (this.falling &&
+      (this.falling.x <= x && x <= this.falling.x + (this.falling.c[0].length - 1))
+      && (y <= this.falling.y && y >= this.falling.y - (this.falling.c.length - 1))) {
+      return this.falling.c[this.falling.y - y][x - this.falling.x]
+    }
     if (this.dropped.has(`${x}${y}`)) { return this.dropped.get(`${x}${y}`) }
     return "."
   }
