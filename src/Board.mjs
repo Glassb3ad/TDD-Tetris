@@ -10,12 +10,12 @@ export class Board {
     this.dropped = new Map();
   }
 
-  covers(x, y, falling) {
+  coversXY(x, y, falling) {
     return (falling.x <= x && x <= falling.x + (falling.c[0].length - 1))
       && (y <= falling.y && y >= falling.y - (falling.c.length - 1))
   }
 
-  fallingCharOccupies(x, y) { return this.hasFalling() && this.covers(x, y, this.falling) && this.falling.c?.[this.falling.y - y]?.[x - this.falling.x] !== "." }
+  fallingCharOccupies(x, y, falling) { return this.hasFalling() && this.coversXY(x, y, falling) && falling.c[falling.y - y][x - falling.x] !== "." }
 
   drop(c) {
     if (this.hasFalling()) {
