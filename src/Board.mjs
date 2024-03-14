@@ -15,7 +15,7 @@ export class Board {
       && (y <= block.y && y >= block.y - (block.shape.length - 1))
   }
 
-  occupyXY(x, y, falling) { return this.hasFalling() && this.coversXY(x, y, falling) && falling.shape[falling.y - y][x - falling.x] !== "." }
+  occupyXY(x, y, block) { return this.hasFalling() && this.coversXY(x, y, block) && block.shape[block.y - y][x - block.x] !== "." }
 
   drop(c) {
     if (this.hasFalling()) {
