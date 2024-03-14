@@ -25,21 +25,21 @@ export class Board {
     this.falling = { shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1 }
   }
 
-  fallingAboveDropped(falling) {
+  aboveDropped(block) {
     let res = false
     this.dropped.forEach((_, key) => {
       const [x, y] = key.split("")
-      if (this.occupyXY(Number.parseInt(x), Number.parseInt(y) + 1, falling)) res = true
+      if (this.occupyXY(Number.parseInt(x), Number.parseInt(y) + 1, block)) res = true
     })
     return res
   }
 
-  hasReachedBottom(falling) {
-    return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupyXY(x, 0, falling))
+  hasReachedBottom(block) {
+    return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupyXY(x, 0, block))
   }
 
   canFall(block) {
-    return !(this.hasReachedBottom(block) || this.fallingAboveDropped(block))
+    return !(this.hasReachedBottom(block) || this.aboveDropped(block))
   }
 
   addToDropped(block) {
