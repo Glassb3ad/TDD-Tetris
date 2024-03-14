@@ -25,7 +25,7 @@ export class Board {
     this.falling = { c: shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1 }
   }
 
-  fallingAboveDropped() {
+  fallingAboveDropped(falling) {
     let res = false
     this.dropped.forEach((_, key) => {
       const [x, y] = key.split("")
@@ -34,12 +34,12 @@ export class Board {
     return res
   }
 
-  hasReachedBottom() {
+  hasReachedBottom(falling) {
     return Array(this.width).fill(0).map((_, index) => index).some(x => this.fallingCharOccupies(x, 0))
   }
 
   canFall(falling) {
-    return !(this.hasReachedBottom() || this.fallingAboveDropped())
+    return !(this.hasReachedBottom(falling) || this.fallingAboveDropped(falling))
   }
 
   tick() {
