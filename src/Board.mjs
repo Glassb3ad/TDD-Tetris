@@ -1,6 +1,7 @@
 class Block {
   static toShape(arg) { return arg.toString().split("\n").map(a => a.split("")).filter(a => a[0]) }
 }
+
 export class Board {
   width;
   height;
@@ -18,7 +19,7 @@ export class Board {
       && (y <= block.y && y >= block.y - (block.shape.length - 1))
   }
 
-  occupyXY(x, y, block) { return this.hasFalling() && this.coversXY(x, y, block) && block.shape[block.y - y][x - block.x] !== "." }
+  occupiesXY(x, y, block) { return this.hasFalling() && this.coversXY(x, y, block) && block.shape[block.y - y][x - block.x] !== "." }
 
   drop(c) {
     if (this.hasFalling()) {
@@ -32,13 +33,13 @@ export class Board {
     let res = false
     this.dropped.forEach((_, key) => {
       const [x, y] = key.split("")
-      if (this.occupyXY(Number.parseInt(x), Number.parseInt(y) + 1, block)) res = true
+      if (this.occupiesXY(Number.parseInt(x), Number.parseInt(y) + 1, block)) res = true
     })
     return res
   }
 
   hasReachedBottom(block) {
-    return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupyXY(x, 0, block))
+    return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupiesXY(x, 0, block))
   }
 
   canFall(block) {
@@ -47,7 +48,7 @@ export class Board {
 
   addToDropped(block) {
     for (let y = 0; y < this.height; y++) {
-      for (let x = 0; x < this.width; x++) { if (this.occupyXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
+      for (let x = 0; x < this.width; x++) { if (this.occupiesXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
     }
   }
 
@@ -68,7 +69,7 @@ export class Board {
 
 
   getXY(x, y) {
-    if (this.hasFalling() && this.occupyXY(x, y, this.falling)) {
+    if (this.hasFalling() && this.occupiesXY(x, y, this.falling)) {
       return this.falling.shape[this.falling.y - y][x - this.falling.x]
     }
     if (this.dropped.has(`${x}${y}`)) { return this.dropped.get(`${x}${y}`) }
