@@ -34,8 +34,12 @@ export class Board {
     return res
   }
 
+  hasReachedBottom() {
+    return Array(this.width).fill(0).map((_, index) => index).some(x => this.fallingCharOccupies(x, 0))
+  }
+
   canFall(falling) {
-    return falling && !(Array(this.width).fill(0).map((_, index) => index).some(x => this.fallingCharOccupies(x, 0)) || this.fallingAboveDropped())
+    return falling && !(this.hasReachedBottom() || this.fallingAboveDropped())
   }
 
   tick() {
@@ -53,6 +57,7 @@ export class Board {
   hasFalling() {
     return !!this.falling
   }
+
 
   getXY(x, y) {
     if (this.fallingCharOccupies(x, y)) {
