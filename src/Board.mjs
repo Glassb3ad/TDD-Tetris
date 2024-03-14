@@ -42,15 +42,19 @@ export class Board {
     return !(this.hasReachedBottom(falling) || this.fallingAboveDropped(falling))
   }
 
+  addToDropped(block) {
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) { if (this.occupyXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
+    }
+  }
+
   tick() {
     if (!this.hasFalling()) return
     if (this.canFall(this.falling)) {
       this.falling.y = this.falling.y - 1
     }
     else {
-      for (let y = 0; y < this.height; y++) {
-        for (let x = 0; x < this.width; x++) { if (this.occupyXY(x, y, this.falling)) { this.dropped.set(`${x}${y}`, this.falling.shape[this.falling.y - y][x - this.falling.x]) } }
-      }
+      this.addToDropped(this.falling)
       this.falling = null
     }
   }
