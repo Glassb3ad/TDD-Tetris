@@ -10,12 +10,12 @@ export class Board {
     this.dropped = new Map();
   }
 
-  fallingOccupiesXY(x, y) {
+  covers(x, y) {
     return this.falling &&
       (this.falling.x <= x && x <= this.falling.x + (this.falling.c[0].length - 1))
       && (y <= this.falling.y && y >= this.falling.y - (this.falling.c.length - 1))
   }
-  fallingCharOccupies(x, y) { return this.fallingOccupiesXY(x, y) && this.falling.c[this.falling.y - y][x - this.falling.x] !== "." }
+  fallingCharOccupies(x, y) { return this.hasFalling() && this.covers(x, y) && this.falling.c?.[this.falling.y - y]?.[x - this.falling.x] !== "." }
 
   drop(c) {
     if (this.hasFalling()) {
@@ -61,7 +61,7 @@ export class Board {
 
 
   getXY(x, y) {
-    if (this.fallingCharOccupies(x, y)) {
+    if (this.hasFalling() && this.fallingCharOccupies(x, y)) {
       return this.falling.c[this.falling.y - y][x - this.falling.x]
     }
     if (this.dropped.has(`${x}${y}`)) { return this.dropped.get(`${x}${y}`) }
