@@ -38,8 +38,8 @@ export class Board {
     return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupyXY(x, 0, falling))
   }
 
-  canFall(falling) {
-    return !(this.hasReachedBottom(falling) || this.fallingAboveDropped(falling))
+  canFall(block) {
+    return !(this.hasReachedBottom(block) || this.fallingAboveDropped(block))
   }
 
   addToDropped(block) {
