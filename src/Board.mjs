@@ -10,9 +10,9 @@ export class Board {
     this.dropped = new Map();
   }
 
-  coversXY(x, y, falling) {
-    return (falling.x <= x && x <= falling.x + (falling.shape[0].length - 1))
-      && (y <= falling.y && y >= falling.y - (falling.shape.length - 1))
+  coversXY(x, y, block) {
+    return (block.x <= x && x <= block.x + (block.shape[0].length - 1))
+      && (y <= block.y && y >= block.y - (block.shape.length - 1))
   }
 
   occupyXY(x, y, falling) { return this.hasFalling() && this.coversXY(x, y, falling) && falling.shape[falling.y - y][x - falling.x] !== "." }
