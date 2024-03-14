@@ -54,8 +54,8 @@ export class Board {
     return !!this.falling
   }
 
-  drawXY(x, y) {
-    if (this.fallingOccupiesXY(x, y)) {
+  getXY(x, y) {
+    if (this.fallingCharOccupies(x, y)) {
       return this.falling.c[this.falling.y - y][x - this.falling.x]
     }
     if (this.dropped.has(`${x}${y}`)) { return this.dropped.get(`${x}${y}`) }
@@ -64,7 +64,7 @@ export class Board {
 
   drawRow(x = 0, y = this.height, row = "") {
     if (x >= this.width) return row
-    return this.drawRow(x + 1, y, row + this.drawXY(x, y))
+    return this.drawRow(x + 1, y, row + this.getXY(x, y))
   }
 
   drawBoard(y = this.height - 1, board = "") {
