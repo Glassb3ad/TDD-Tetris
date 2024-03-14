@@ -40,7 +40,7 @@ export class Board {
 
   tick() {
     if (this.canFall(this.falling)) {
-      this.falling = { ...this.falling, y: this.falling.y - 1 }
+      this.falling.y = this.falling.y - 1
     }
     else {
       for (let y = 0; y < this.height; y++) {
