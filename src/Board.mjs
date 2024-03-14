@@ -1,3 +1,6 @@
+class Block {
+  static toShape(arg) { return arg.toString().split("\n").map(a => a.split("")).filter(a => a[0]) }
+}
 export class Board {
   width;
   height;
@@ -21,7 +24,7 @@ export class Board {
     if (this.hasFalling()) {
       throw new Error("already falling")
     }
-    const shape = c.toString().split("\n").map(a => a.split("")).filter(a => a[0])
+    const shape = Block.toShape(c)
     this.falling = { shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1 }
   }
 
