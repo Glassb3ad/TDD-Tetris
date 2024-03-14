@@ -39,10 +39,11 @@ export class Board {
   }
 
   canFall(falling) {
-    return falling && !(this.hasReachedBottom() || this.fallingAboveDropped())
+    return !(this.hasReachedBottom() || this.fallingAboveDropped())
   }
 
   tick() {
+    if (!this.hasFalling()) return
     if (this.canFall(this.falling)) {
       this.falling.y = this.falling.y - 1
     }
