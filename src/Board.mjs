@@ -32,8 +32,14 @@ export class Board {
       this.falling.y = this.falling.y - 1
     }
     else {
-      this.addToDropped(this.falling)
+      this.stopBlock(this.falling)
       this.falling = null
+    }
+  }
+
+  stopBlock(block) {
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) { if (this.occupiesXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
     }
   }
 
@@ -102,12 +108,6 @@ export class Board {
       if (this.occupiesXY(Number.parseInt(x) - 1, Number.parseInt(y), block)) res = true
     })
     return res
-  }
-
-  addToDropped(block) {
-    for (let y = 0; y < this.height; y++) {
-      for (let x = 0; x < this.width; x++) { if (this.occupiesXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
-    }
   }
 
   occupiesX(x, block) {
