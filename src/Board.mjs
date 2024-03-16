@@ -75,10 +75,6 @@ export class Board {
     this.falling.shape = Block.toShape(tetromino)
   }
 
-  occupiesX(x, block) {
-    return Array(this.height).fill(0).map((_, index) => index).reduce((result, y) => result || this.occupiesXY(x, y, block), false)
-  }
-
   occupiesXY(x, y, block) { return this.hasFalling() && this.coversXY(x, y, block) && block.shape[block.y - y][x - block.x] !== "." }
 
   coversXY(x, y, block) {
