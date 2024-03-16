@@ -94,11 +94,11 @@ export class Board {
   }
 
   canMoveRight(block) {
-    return !(this.occupiesRightBorder(block) || this.hasBlockRight(block))
+    return block && this.occupiesRightBorder(block) && !this.hasBlockRight(block)
   }
 
   occupiesRightBorder(block) {
-    return this.occupiesX(this.width - 1, block)
+    return this.isInsideBoard({ ...block, x: block.x + 1 })
   }
 
   hasBlockRight(block) {
@@ -131,6 +131,12 @@ export class Board {
   coversXY(x, y, block) {
     return (block.x <= x && x <= block.x + (block.shape[0].length - 1))
       && (y <= block.y && y >= block.y - (block.shape.length - 1))
+  }
+
+  isInsideBoard(block) {
+    let result = true
+    for (let y = 0; y < block.shape.length; y++) { for (let x = 0; x < block.shape[0].length; x++) { if (block.shape[y][x] !== "." && (x + block.x >= this.width || x + block.x < 0 /* || y - block.y < 0 || y - block.y >= this.height */)) { result = false } } }
+    return result
   }
 
   drawBoard(y = this.height - 1, board = "") {
