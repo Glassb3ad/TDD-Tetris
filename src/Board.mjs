@@ -52,7 +52,7 @@ export class Board {
   }
 
   moveRight() {
-    if (!this.occupiesRightBorder(this.falling)) {
+    if (!this.occupiesRightBorder(this.falling) && !this.hasBlockRight(this.falling)) {
       this.falling.x = this.falling.x + 1
     }
   }
@@ -75,6 +75,15 @@ export class Board {
     this.dropped.forEach((_, key) => {
       const [x, y] = key.split("")
       if (this.occupiesXY(Number.parseInt(x) + 1, Number.parseInt(y), block)) res = true
+    })
+    return res
+  }
+
+  hasBlockRight(block) {
+    let res = false
+    this.dropped.forEach((_, key) => {
+      const [x, y] = key.split("")
+      if (this.occupiesXY(Number.parseInt(x) - 1, Number.parseInt(y), block)) res = true
     })
     return res
   }
