@@ -25,6 +25,10 @@ export class Board {
     return Array(this.height).fill(0).map((_, index) => index).reduce((result, y) => result || this.occupiesXY(x, y, block), false)
   }
 
+  occupiesLeftBorder() {
+    return this.occupiesX(0, this.falling)
+  }
+
   drop(c) {
     if (this.hasFalling()) {
       throw new Error("already falling")
@@ -34,7 +38,7 @@ export class Board {
   }
 
   moveLeft() {
-    if (!this.occupiesX(0, this.falling)) {
+    if (!this.occupiesLeftBorder()) {
       this.falling.x = this.falling.x - 1
     }
   }
