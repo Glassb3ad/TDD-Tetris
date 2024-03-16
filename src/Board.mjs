@@ -63,15 +63,6 @@ export class Board {
     }
   }
 
-  hasBlockRight(block) {
-    let res = false
-    this.dropped.forEach((_, key) => {
-      const [x, y] = key.split("")
-      if (this.occupiesXY(Number.parseInt(x) - 1, Number.parseInt(y), block)) res = true
-    })
-    return res
-  }
-
   rotateLeft() {
     const tetromino = this.falling.tetromino.rotateLeft()
     this.falling.tetromino = tetromino
