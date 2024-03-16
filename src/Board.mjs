@@ -61,12 +61,16 @@ export class Board {
   }
 
   moveLeft() {
-    if (this.canMoveLeft({ ...this.falling, x: this.falling.x - 1 })) {
+    if (this.canOccupyBoard({ ...this.falling, x: this.falling.x - 1 })) {
       this.falling.x = this.falling.x - 1
     }
   }
 
   canMoveLeft(block) {
+    return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
+  }
+
+  canOccupyBoard(block) {
     return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
   }
 
