@@ -122,12 +122,8 @@ export class Board {
   }
 
 
-  getXY(x, y) {
-    if (this.hasFalling() && this.occupiesXY(x, y, this.falling)) {
-      return this.falling.shape[this.falling.y - y][x - this.falling.x]
-    }
-    if (this.dropped.has(`${x}${y}`)) { return this.dropped.get(`${x}${y}`) }
-    return "."
+  drawBoard(y = this.height - 1, board = "") {
+    return (y >= 0) ? this.drawBoard(y - 1, board + `${this.drawRow(0, y)}\n`) : board
   }
 
   drawRow(x = 0, y = this.height, row = "") {
@@ -135,8 +131,12 @@ export class Board {
     return this.drawRow(x + 1, y, row + this.getXY(x, y))
   }
 
-  drawBoard(y = this.height - 1, board = "") {
-    return (y >= 0) ? this.drawBoard(y - 1, board + `${this.drawRow(0, y)}\n`) : board
+  getXY(x, y) {
+    if (this.hasFalling() && this.occupiesXY(x, y, this.falling)) {
+      return this.falling.shape[this.falling.y - y][x - this.falling.x]
+    }
+    if (this.dropped.has(`${x}${y}`)) { return this.dropped.get(`${x}${y}`) }
+    return "."
   }
 
   toString() {
