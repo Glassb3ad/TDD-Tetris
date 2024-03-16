@@ -70,15 +70,7 @@ export class Board {
   }
 
   rotateRight() {
-    const tetromino = this.falling.tetromino.rotateRight()
-    const newBlock = { ...this.falling, shape: Block.toShape(tetromino), tetromino }
-    if (this.canOccupyBoard(newBlock)) {
-      this.falling = newBlock
-    } else {
-      if (!this.isInsideBoard(newBlock)) {
-        this.moveLeft()
-      }
-    }
+    this.rotate(this.falling.tetromino.rotateRight())
   }
 
   rotate(tetromino) {
