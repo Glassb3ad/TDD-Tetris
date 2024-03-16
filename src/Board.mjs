@@ -76,15 +76,15 @@ export class Board {
     }
   }
 
-  coversXY(x, y, block) {
-    return (block.x <= x && x <= block.x + (block.shape[0].length - 1))
-      && (y <= block.y && y >= block.y - (block.shape.length - 1))
+  occupiesX(x, block) {
+    return Array(this.height).fill(0).map((_, index) => index).reduce((result, y) => result || this.occupiesXY(x, y, block), false)
   }
 
   occupiesXY(x, y, block) { return this.hasFalling() && this.coversXY(x, y, block) && block.shape[block.y - y][x - block.x] !== "." }
 
-  occupiesX(x, block) {
-    return Array(this.height).fill(0).map((_, index) => index).reduce((result, y) => result || this.occupiesXY(x, y, block), false)
+  coversXY(x, y, block) {
+    return (block.x <= x && x <= block.x + (block.shape[0].length - 1))
+      && (y <= block.y && y >= block.y - (block.shape.length - 1))
   }
 
   occupiesLeftBorder(block) {
