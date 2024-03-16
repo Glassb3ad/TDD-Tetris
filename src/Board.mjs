@@ -14,6 +14,17 @@ export class Board {
     this.dropped = new Map();
   }
 
+  tick() {
+    if (!this.hasFalling()) return
+    if (this.canFall(this.falling)) {
+      this.falling.y = this.falling.y - 1
+    }
+    else {
+      this.addToDropped(this.falling)
+      this.falling = null
+    }
+  }
+
   coversXY(x, y, block) {
     return (block.x <= x && x <= block.x + (block.shape[0].length - 1))
       && (y <= block.y && y >= block.y - (block.shape.length - 1))
@@ -106,21 +117,9 @@ export class Board {
     }
   }
 
-  tick() {
-    if (!this.hasFalling()) return
-    if (this.canFall(this.falling)) {
-      this.falling.y = this.falling.y - 1
-    }
-    else {
-      this.addToDropped(this.falling)
-      this.falling = null
-    }
-  }
-
   hasFalling() {
     return !!this.falling
   }
-
 
   drawBoard(y = this.height - 1, board = "") {
     return (y >= 0) ? this.drawBoard(y - 1, board + `${this.drawRow(0, y)}\n`) : board
