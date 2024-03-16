@@ -65,7 +65,7 @@ export class Board {
     this.tick()
   }
 
-  aboveDropped(block) {
+  hasBlockDown(block) {
     let res = false
     this.dropped.forEach((_, key) => {
       const [x, y] = key.split("")
@@ -97,7 +97,7 @@ export class Board {
   }
 
   canFall(block) {
-    return !(this.hasReachedBottom(block) || this.aboveDropped(block))
+    return !(this.hasReachedBottom(block) || this.hasBlockDown(block))
   }
 
   addToDropped(block) {
