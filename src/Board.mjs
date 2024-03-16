@@ -49,13 +49,6 @@ export class Board {
     return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupiesXY(x, 0, block))
   }
 
-
-  addToDropped(block) {
-    for (let y = 0; y < this.height; y++) {
-      for (let x = 0; x < this.width; x++) { if (this.occupiesXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
-    }
-  }
-
   moveLeft() {
     if (this.canMoveLeft(this.falling)) {
       this.falling.x = this.falling.x - 1
@@ -74,6 +67,13 @@ export class Board {
 
   canMoveRight(block) {
     return !(this.occupiesRightBorder(block) || this.hasBlockRight(block))
+  }
+
+
+  addToDropped(block) {
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) { if (this.occupiesXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
+    }
   }
 
   coversXY(x, y, block) {
