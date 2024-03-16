@@ -94,11 +94,7 @@ export class Board {
   }
 
   canMoveRight(block) {
-    return block && this.occupiesRightBorder(block) && !this.hasBlockRight(block)
-  }
-
-  occupiesRightBorder(block) {
-    return this.isInsideBoard({ ...block, x: block.x + 1 })
+    return block && this.isInsideBoard({ ...block, x: block.x + 1 }) && !this.hasBlockRight(block)
   }
 
   hasBlockRight(block) {
