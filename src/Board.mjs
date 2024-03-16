@@ -74,10 +74,6 @@ export class Board {
     return block && this.isInsideBoard({ ...block, x: block.x - 1 }) && !this.hasBlockLeft(block)
   }
 
-  occupiesLeftBorder(block) {
-    return this.occupiesX(0, block)
-  }
-
   hasBlockLeft(block) {
     let res = false
     this.dropped.forEach((_, key) => {
