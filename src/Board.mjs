@@ -33,6 +33,14 @@ export class Board {
     }
   }
 
+  canFall(block) {
+    return !(this.occupiesBottomBorder(block) || this.hasBlockDown(block))
+  }
+
+  moveDown() {
+    this.tick()
+  }
+
   hasFalling() {
     return !!this.falling
   }
@@ -76,9 +84,6 @@ export class Board {
     return this.occupiesX(this.width - 1, block)
   }
 
-  moveDown() {
-    this.tick()
-  }
 
   hasBlockDown(block) {
     let res = false
@@ -109,10 +114,6 @@ export class Board {
 
   occupiesBottomBorder(block) {
     return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupiesXY(x, 0, block))
-  }
-
-  canFall(block) {
-    return !(this.occupiesBottomBorder(block) || this.hasBlockDown(block))
   }
 
   addToDropped(block) {
