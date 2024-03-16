@@ -14,6 +14,10 @@ export class Board {
     this.dropped = new Map();
   }
 
+  hasFalling() {
+    return !!this.falling
+  }
+
   tick() {
     if (!this.hasFalling()) return
     if (this.canFall(this.falling)) {
@@ -115,10 +119,6 @@ export class Board {
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) { if (this.occupiesXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
     }
-  }
-
-  hasFalling() {
-    return !!this.falling
   }
 
   drawBoard(y = this.height - 1, board = "") {
