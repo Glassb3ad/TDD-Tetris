@@ -28,7 +28,7 @@ export class Board {
 
   tick() {
     if (!this.hasFalling()) return
-    if (this.canMoveDown(this.falling)) {
+    if (this.canMoveDown({ ...this.falling, y: this.falling.y - 1 })) {
       this.falling.y = this.falling.y - 1
     }
     else {
@@ -48,7 +48,7 @@ export class Board {
   }
 
   canMoveDown(block) {
-    return this.isInsideBoard({ ...block, y: block.y - 1 }) && !this.hasBlockDown(block)
+    return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
   }
 
   hasBlockDown(block) {
