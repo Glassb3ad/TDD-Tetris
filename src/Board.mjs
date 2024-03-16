@@ -80,13 +80,13 @@ export class Board {
   }
 
   moveRight() {
-    if (this.canMoveRight(this.falling)) {
+    if (this.canMoveRight({ ...this.falling, x: this.falling.x + 1 })) {
       this.falling.x = this.falling.x + 1
     }
   }
 
   canMoveRight(block) {
-    return block && this.isInsideBoard({ ...block, x: block.x + 1 }) && !this.occupiesDropped({ ...block, x: block.x + 1 })
+    return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
   }
 
   hasBlockRight(block) {
