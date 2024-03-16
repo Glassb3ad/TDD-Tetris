@@ -59,6 +59,10 @@ export class Board {
     return !(this.occupiesLeftBorder(block) || this.hasBlockLeft(block))
   }
 
+  occupiesLeftBorder(block) {
+    return this.occupiesX(0, block)
+  }
+
   moveRight() {
     if (this.canMoveRight(this.falling)) {
       this.falling.x = this.falling.x + 1
@@ -68,11 +72,6 @@ export class Board {
   canMoveRight(block) {
     return !(this.occupiesRightBorder(block) || this.hasBlockRight(block))
   }
-
-  occupiesLeftBorder(block) {
-    return this.occupiesX(0, block)
-  }
-
 
   addToDropped(block) {
     for (let y = 0; y < this.height; y++) {
