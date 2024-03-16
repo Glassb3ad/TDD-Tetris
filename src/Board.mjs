@@ -29,6 +29,10 @@ export class Board {
     return this.occupiesX(0, this.falling)
   }
 
+  occupiesRightBorder(block) {
+    return this.occupiesX(this.width - 1, block)
+  }
+
   drop(c) {
     if (this.hasFalling()) {
       throw new Error("already falling")
@@ -44,7 +48,9 @@ export class Board {
   }
 
   moveRight() {
-    this.falling.x = this.falling.x + 1
+    if (!this.occupiesRightBorder(this.falling)) {
+      this.falling.x = this.falling.x + 1
+    }
   }
 
   moveDown() {
