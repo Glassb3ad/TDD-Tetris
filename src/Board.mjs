@@ -57,15 +57,6 @@ export class Board {
     return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
   }
 
-  hasBlockLeft(block) {
-    let res = false
-    this.dropped.forEach((_, key) => {
-      const [x, y] = key.split("")
-      if (this.occupiesXY(Number.parseInt(x) + 1, Number.parseInt(y), block)) res = true
-    })
-    return res
-  }
-
   moveRight() {
     if (this.canMoveRight({ ...this.falling, x: this.falling.x + 1 })) {
       this.falling.x = this.falling.x + 1
