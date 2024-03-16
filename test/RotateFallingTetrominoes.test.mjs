@@ -76,4 +76,22 @@ describe("Rotate Falling tetrominoes", () => {
            ...TTT....`
         );
     });
+
+    test("Can wall kick left side", () => {
+        board.drop(Tetromino.T_SHAPE);
+        board.rotateRight()
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        board.rotateLeft()
+        expect(board.toString()).to.equalShape(
+            `.T........
+            .TT.......
+            .T........
+            ..........
+            ..........
+            ..........`
+        );
+    });
 });
