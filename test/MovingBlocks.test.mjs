@@ -99,4 +99,30 @@ describe("Falling tetrominoes", () => {
         );
         expect(board.hasFalling(), "the block should stop moving").to.be.false;
     });
+
+    test("cannot be moved left through other blocks", () => {
+        board.drop(Tetromino.T_SHAPE);
+        board.moveDown()
+        board.moveDown()
+        board.moveDown()
+        board.moveDown()
+        board.moveDown()
+
+        board.drop(Tetromino.T_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        board.moveDown()
+        board.moveDown()
+        board.moveDown()
+        board.moveLeft()
+
+        expect(board.toString()).to.equalShape(
+            `..........
+            ..........
+            ..........
+            ......T...
+            ....TTTT..
+            ...TTT....`
+        );
+    });
 });
