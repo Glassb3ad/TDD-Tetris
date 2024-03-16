@@ -80,4 +80,23 @@ describe("Falling tetrominoes", () => {
             ..........`
         );
     });
+
+    test("cannot be moved down beyond the board", () => {
+        board.drop(Tetromino.T_SHAPE);
+        board.moveDown()
+        board.moveDown()
+        board.moveDown()
+        board.moveDown()
+        board.moveDown()
+
+        expect(board.toString()).to.equalShape(
+            `..........
+            ..........
+            ..........
+            ..........
+            ....T.....
+            ...TTT....`
+        );
+        expect(board.hasFalling(), "the block should stop moving").to.be.false;
+    });
 });
