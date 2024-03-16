@@ -52,9 +52,13 @@ export class Board {
   }
 
   moveRight() {
-    if (!this.occupiesRightBorder(this.falling) && !this.hasBlockRight(this.falling)) {
+    if (this.canMoveRight(this.falling)) {
       this.falling.x = this.falling.x + 1
     }
+  }
+
+  canMoveRight(block) {
+    return !(this.occupiesRightBorder(block) || this.hasBlockRight(block))
   }
 
   moveDown() {
