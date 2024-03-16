@@ -33,6 +33,10 @@ export class Board {
     this.falling.x = this.falling.x - 1
   }
 
+  moveRight() {
+    this.falling.x = this.falling.x + 1
+  }
+
   aboveDropped(block) {
     let res = false
     this.dropped.forEach((_, key) => {
