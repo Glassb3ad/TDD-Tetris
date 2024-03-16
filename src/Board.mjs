@@ -116,6 +116,12 @@ export class Board {
     this.falling.shape = Block.toShape(tetromino)
   }
 
+  rotateRight() {
+    const tetromino = this.falling.tetromino.rotateRight()
+    this.falling.tetromino = tetromino
+    this.falling.shape = Block.toShape(tetromino)
+  }
+
   occupiesX(x, block) {
     return Array(this.height).fill(0).map((_, index) => index).reduce((result, y) => result || this.occupiesXY(x, y, block), false)
   }
