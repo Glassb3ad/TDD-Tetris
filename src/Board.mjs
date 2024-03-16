@@ -69,6 +69,10 @@ export class Board {
     return !(this.occupiesRightBorder(block) || this.hasBlockRight(block))
   }
 
+  occupiesLeftBorder(block) {
+    return this.occupiesX(0, block)
+  }
+
 
   addToDropped(block) {
     for (let y = 0; y < this.height; y++) {
@@ -87,9 +91,6 @@ export class Board {
       && (y <= block.y && y >= block.y - (block.shape.length - 1))
   }
 
-  occupiesLeftBorder(block) {
-    return this.occupiesX(0, block)
-  }
 
   occupiesRightBorder(block) {
     return this.occupiesX(this.width - 1, block)
