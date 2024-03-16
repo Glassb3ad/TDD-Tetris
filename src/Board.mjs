@@ -75,10 +75,13 @@ export class Board {
 
   rotate(tetromino) {
     const newBlock = { ...this.falling, shape: Block.toShape(tetromino), tetromino };
-    if (!this.isInsideBoard(newBlock)) { return this.moveRight() || this.moveLeft() }
+    if (!this.isInsideBoard(newBlock)) { return this.wallKick() }
     if (this.canOccupyBoard(newBlock)) { this.falling = newBlock }
   }
 
+  wallKick() {
+    return this.moveRight() || this.moveLeft()
+  }
   occupiesXY(x, y, block) { return this.hasFalling() && this.coversXY(x, y, block) && block.shape[block.y - y][x - block.x] !== "." }
 
   coversXY(x, y, block) {
