@@ -92,12 +92,12 @@ export class Board {
     return res
   }
 
-  hasReachedBottom(block) {
+  occupiesBottomBorder(block) {
     return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupiesXY(x, 0, block))
   }
 
   canFall(block) {
-    return !(this.hasReachedBottom(block) || this.hasBlockDown(block))
+    return !(this.occupiesBottomBorder(block) || this.hasBlockDown(block))
   }
 
   addToDropped(block) {
