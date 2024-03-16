@@ -58,7 +58,7 @@ export class Board {
   }
 
   moveRight() {
-    if (this.canMoveRight({ ...this.falling, x: this.falling.x + 1 })) {
+    if (this.canOccupyBoard({ ...this.falling, x: this.falling.x + 1 })) {
       this.falling.x = this.falling.x + 1
     }
   }
