@@ -14,10 +14,6 @@ export class Board {
     this.dropped = new Map();
   }
 
-  hasFalling() {
-    return !!this.falling
-  }
-
   drop(c) {
     if (this.hasFalling()) {
       throw new Error("already falling")
@@ -35,6 +31,10 @@ export class Board {
       this.addToDropped(this.falling)
       this.falling = null
     }
+  }
+
+  hasFalling() {
+    return !!this.falling
   }
 
   coversXY(x, y, block) {
