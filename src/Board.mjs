@@ -29,6 +29,10 @@ export class Board {
     this.falling = { shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1 }
   }
 
+  moveLeft() {
+    this.falling.x = this.falling.x - 1
+  }
+
   aboveDropped(block) {
     let res = false
     this.dropped.forEach((_, key) => {
