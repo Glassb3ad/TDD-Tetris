@@ -37,6 +37,16 @@ export class Board {
     return !!this.falling
   }
 
+  moveLeft() {
+    if (this.canMoveLeft(this.falling)) {
+      this.falling.x = this.falling.x - 1
+    }
+  }
+
+  canMoveLeft(block) {
+    return !(this.occupiesLeftBorder(block) || this.hasBlockLeft(block))
+  }
+
   coversXY(x, y, block) {
     return (block.x <= x && x <= block.x + (block.shape[0].length - 1))
       && (y <= block.y && y >= block.y - (block.shape.length - 1))
@@ -54,16 +64,6 @@ export class Board {
 
   occupiesRightBorder(block) {
     return this.occupiesX(this.width - 1, block)
-  }
-
-  moveLeft() {
-    if (this.canMoveLeft(this.falling)) {
-      this.falling.x = this.falling.x - 1
-    }
-  }
-
-  canMoveLeft(block) {
-    return !(this.occupiesLeftBorder(block) || this.hasBlockLeft(block))
   }
 
   moveRight() {
