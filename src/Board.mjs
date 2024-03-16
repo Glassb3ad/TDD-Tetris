@@ -51,10 +51,6 @@ export class Board {
     return this.isInsideBoard({ ...block, y: block.y - 1 }) && !this.hasBlockDown(block)
   }
 
-  occupiesBottomBorder(block) {
-    return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupiesXY(x, 0, block))
-  }
-
   hasBlockDown(block) {
     let res = false
     this.dropped.forEach((_, key) => {
