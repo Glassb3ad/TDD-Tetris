@@ -18,6 +18,14 @@ export class Board {
     return !!this.falling
   }
 
+  drop(c) {
+    if (this.hasFalling()) {
+      throw new Error("already falling")
+    }
+    const shape = Block.toShape(c)
+    this.falling = { shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1 }
+  }
+
   tick() {
     if (!this.hasFalling()) return
     if (this.canFall(this.falling)) {
@@ -46,14 +54,6 @@ export class Board {
 
   occupiesRightBorder(block) {
     return this.occupiesX(this.width - 1, block)
-  }
-
-  drop(c) {
-    if (this.hasFalling()) {
-      throw new Error("already falling")
-    }
-    const shape = Block.toShape(c)
-    this.falling = { shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1 }
   }
 
   moveLeft() {
