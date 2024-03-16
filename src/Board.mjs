@@ -22,6 +22,10 @@ export class Board {
     this.falling = { shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1 }
   }
 
+  hasFalling() {
+    return !!this.falling
+  }
+
   tick() {
     if (!this.hasFalling()) return
     if (this.canFall(this.falling)) {
@@ -45,8 +49,10 @@ export class Board {
     this.tick()
   }
 
-  hasFalling() {
-    return !!this.falling
+  addToDropped(block) {
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) { if (this.occupiesXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
+    }
   }
 
   moveLeft() {
@@ -114,12 +120,6 @@ export class Board {
       if (this.occupiesXY(Number.parseInt(x) - 1, Number.parseInt(y), block)) res = true
     })
     return res
-  }
-
-  addToDropped(block) {
-    for (let y = 0; y < this.height; y++) {
-      for (let x = 0; x < this.width; x++) { if (this.occupiesXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
-    }
   }
 
   drawBoard(y = this.height - 1, board = "") {
