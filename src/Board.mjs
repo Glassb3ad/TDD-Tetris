@@ -50,12 +50,14 @@ export class Board {
   moveLeft() {
     if (this.canOccupyBoard({ ...this.falling, x: this.falling.x - 1 })) {
       this.falling.x = this.falling.x - 1
+      return true
     }
   }
 
   moveRight() {
     if (this.canOccupyBoard({ ...this.falling, x: this.falling.x + 1 })) {
       this.falling.x = this.falling.x + 1
+      return true
     }
   }
 
@@ -79,7 +81,13 @@ export class Board {
     }
   }
 
-  rotate(tetromino) { const newBlock = { ...this.falling, shape: Block.toShape(tetromino), tetromino }; if (this.canOccupyBoard(newBlock)) { this.falling = newBlock } else { if (!this.isInsideBoard(newBlock)) { this.moveRight() } } }
+  rotate(tetromino) {
+    const newBlock = { ...this.falling, shape: Block.toShape(tetromino), tetromino };
+    if (this.canOccupyBoard(newBlock)) { this.falling = newBlock }
+    else {
+      if (!this.isInsideBoard(newBlock)) { this.moveRight() || this.moveLeft() }
+    }
+  }
 
   occupiesXY(x, y, block) { return this.hasFalling() && this.coversXY(x, y, block) && block.shape[block.y - y][x - block.x] !== "." }
 
