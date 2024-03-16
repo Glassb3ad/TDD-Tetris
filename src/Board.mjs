@@ -53,14 +53,14 @@ export class Board {
     }
   }
 
-  canOccupyBoard(block) {
-    return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
-  }
-
   moveRight() {
     if (this.canOccupyBoard({ ...this.falling, x: this.falling.x + 1 })) {
       this.falling.x = this.falling.x + 1
     }
+  }
+
+  canOccupyBoard(block) {
+    return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
   }
 
   rotateLeft() {
