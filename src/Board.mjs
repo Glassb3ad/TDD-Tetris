@@ -67,7 +67,7 @@ export class Board {
   }
 
   canMoveLeft(block) {
-    return block && this.isInsideBoard({ ...block, x: block.x - 1 }) && !this.hasBlockLeft(block)
+    return block && this.isInsideBoard({ ...block, x: block.x - 1 }) && !this.occupiesDropped({ ...block, x: block.x - 1 })
   }
 
   hasBlockLeft(block) {
@@ -134,7 +134,9 @@ export class Board {
   occupiesDropped(block) {
     let result = false
     for (let y = 0; y < block.shape.length; y++) {
-      for (let x = 0; x < block.shape[0].length; x++) { if (block.shape[y][x] !== "." && this.dropped.has(`${x + block.x}${block.y - y}`)) { result = true } }
+      for (let x = 0; x < block.shape[0].length; x++) {
+        if (block.shape[y][x] !== "." && this.dropped.has(`${x + block.x}${block.y - y}`)) { result = true }
+      }
     }
     return result
   }
