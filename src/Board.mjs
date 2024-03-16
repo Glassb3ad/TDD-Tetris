@@ -37,6 +37,10 @@ export class Board {
     this.falling.x = this.falling.x + 1
   }
 
+  moveDown() {
+    this.tick()
+  }
+
   aboveDropped(block) {
     let res = false
     this.dropped.forEach((_, key) => {
