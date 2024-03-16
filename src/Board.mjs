@@ -21,6 +21,10 @@ export class Board {
 
   occupiesXY(x, y, block) { return this.hasFalling() && this.coversXY(x, y, block) && block.shape[block.y - y][x - block.x] !== "." }
 
+  occupiesX(x, block) {
+    return Array(this.height).fill(0).map((_, index) => index).reduce((result, y) => result || this.occupiesXY(x, y, block), false)
+  }
+
   drop(c) {
     if (this.hasFalling()) {
       throw new Error("already falling")
@@ -30,7 +34,9 @@ export class Board {
   }
 
   moveLeft() {
-    this.falling.x = this.falling.x - 1
+    if (!this.occupiesX(0, this.falling)) {
+      this.falling.x = this.falling.x - 1
+    }
   }
 
   moveRight() {
