@@ -37,6 +37,10 @@ export class Board {
     return !(this.occupiesBottomBorder(block) || this.hasBlockDown(block))
   }
 
+  occupiesBottomBorder(block) {
+    return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupiesXY(x, 0, block))
+  }
+
   moveDown() {
     this.tick()
   }
@@ -110,10 +114,6 @@ export class Board {
       if (this.occupiesXY(Number.parseInt(x) - 1, Number.parseInt(y), block)) res = true
     })
     return res
-  }
-
-  occupiesBottomBorder(block) {
-    return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupiesXY(x, 0, block))
   }
 
   addToDropped(block) {
