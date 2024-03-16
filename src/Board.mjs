@@ -63,10 +63,6 @@ export class Board {
     }
   }
 
-  canMoveRight(block) {
-    return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
-  }
-
   hasBlockRight(block) {
     let res = false
     this.dropped.forEach((_, key) => {
