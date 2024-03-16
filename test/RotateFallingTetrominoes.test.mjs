@@ -3,6 +3,12 @@ import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
 
+function fallToBottom(board) {
+    for (let i = 0; i < 10; i++) {
+        board.tick();
+    }
+}
+
 describe("Rotate Falling tetrominoes", () => {
     let board;
     beforeEach(() => {
@@ -32,6 +38,24 @@ describe("Rotate Falling tetrominoes", () => {
             ..........
             ..........
             ..........`
+        );
+    });
+
+    test("Cant rotate left through another block", () => {
+        board.drop(Tetromino.T_SHAPE);
+        fallToBottom(board);
+        board.drop(Tetromino.T_SHAPE);
+        board.tick()
+        board.tick()
+        board.rotateLeft()
+
+        expect(board.toString()).to.equalShape(
+            `..........
+           ..........
+           ....T.....
+           ...TTT....
+           ....T.....
+           ...TTT....`
         );
     });
 });
