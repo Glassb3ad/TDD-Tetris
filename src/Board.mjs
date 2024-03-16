@@ -19,7 +19,7 @@ export class Board {
       throw new Error("already falling")
     }
     const shape = Block.toShape(c)
-    this.falling = { shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1 }
+    this.falling = { shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1, tetromino: c }
   }
 
   hasFalling() {
@@ -108,6 +108,12 @@ export class Board {
       if (this.occupiesXY(Number.parseInt(x) - 1, Number.parseInt(y), block)) res = true
     })
     return res
+  }
+
+  rotateLeft() {
+    const tetromino = this.falling.tetromino.rotateLeft()
+    this.falling.tetromino = tetromino
+    this.falling.shape = Block.toShape(tetromino)
   }
 
   occupiesX(x, block) {
