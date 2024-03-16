@@ -47,15 +47,6 @@ export class Board {
     this.tick()
   }
 
-  hasBlockDown(block) {
-    let res = false
-    this.dropped.forEach((_, key) => {
-      const [x, y] = key.split("")
-      if (this.occupiesXY(Number.parseInt(x), Number.parseInt(y) + 1, block)) res = true
-    })
-    return res
-  }
-
   moveLeft() {
     if (this.canOccupyBoard({ ...this.falling, x: this.falling.x - 1 })) {
       this.falling.x = this.falling.x - 1
