@@ -48,7 +48,7 @@ export class Board {
   }
 
   canMoveDown(block) {
-    return !(this.occupiesBottomBorder(block) || this.hasBlockDown(block))
+    return this.isInsideBoard({ ...block, y: block.y - 1 }) && !this.hasBlockDown(block)
   }
 
   occupiesBottomBorder(block) {
@@ -127,7 +127,11 @@ export class Board {
 
   isInsideBoard(block) {
     let result = true
-    for (let y = 0; y < block.shape.length; y++) { for (let x = 0; x < block.shape[0].length; x++) { if (block.shape[y][x] !== "." && (x + block.x >= this.width || x + block.x < 0 /* || y - block.y < 0 || y - block.y >= this.height */)) { result = false } } }
+    for (let y = 0; y < block.shape.length; y++) {
+      for (let x = 0; x < block.shape[0].length; x++) {
+        if (block.shape[y][x] !== "." && (x + block.x >= this.width || x + block.x < 0 || block.y - y < 0)) { result = false }
+      }
+    }
     return result
   }
 
