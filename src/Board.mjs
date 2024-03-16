@@ -25,8 +25,8 @@ export class Board {
     return Array(this.height).fill(0).map((_, index) => index).reduce((result, y) => result || this.occupiesXY(x, y, block), false)
   }
 
-  occupiesLeftBorder() {
-    return this.occupiesX(0, this.falling)
+  occupiesLeftBorder(block) {
+    return this.occupiesX(0, block)
   }
 
   occupiesRightBorder(block) {
@@ -42,7 +42,7 @@ export class Board {
   }
 
   moveLeft() {
-    if (!this.occupiesLeftBorder()) {
+    if (!this.occupiesLeftBorder(this.falling)) {
       this.falling.x = this.falling.x - 1
     }
   }
