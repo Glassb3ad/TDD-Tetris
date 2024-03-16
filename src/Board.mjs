@@ -42,9 +42,13 @@ export class Board {
   }
 
   moveLeft() {
-    if (!this.occupiesLeftBorder(this.falling) && !this.hasBlockLeft(this.falling)) {
+    if (this.canMoveLeft(this.falling)) {
       this.falling.x = this.falling.x - 1
     }
+  }
+
+  canMoveLeft(block) {
+    return !(this.occupiesLeftBorder(block) || this.hasBlockLeft(block))
   }
 
   moveRight() {
