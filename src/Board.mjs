@@ -49,6 +49,15 @@ export class Board {
     return Array(this.width).fill(0).map((_, index) => index).some(x => this.occupiesXY(x, 0, block))
   }
 
+  hasBlockDown(block) {
+    let res = false
+    this.dropped.forEach((_, key) => {
+      const [x, y] = key.split("")
+      if (this.occupiesXY(Number.parseInt(x), Number.parseInt(y) + 1, block)) res = true
+    })
+    return res
+  }
+
   moveLeft() {
     if (this.canMoveLeft(this.falling)) {
       this.falling.x = this.falling.x - 1
@@ -110,15 +119,6 @@ export class Board {
   coversXY(x, y, block) {
     return (block.x <= x && x <= block.x + (block.shape[0].length - 1))
       && (y <= block.y && y >= block.y - (block.shape.length - 1))
-  }
-
-  hasBlockDown(block) {
-    let res = false
-    this.dropped.forEach((_, key) => {
-      const [x, y] = key.split("")
-      if (this.occupiesXY(Number.parseInt(x), Number.parseInt(y) + 1, block)) res = true
-    })
-    return res
   }
 
   drawBoard(y = this.height - 1, board = "") {
