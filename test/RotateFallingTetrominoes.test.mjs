@@ -113,4 +113,22 @@ describe("Rotate Falling tetrominoes", () => {
             ..........`
         );
     });
+
+    test("Cant rotate left through another block", () => {
+        board.drop(Tetromino.T_SHAPE);
+        board.tick()
+        board.tick()
+        board.tick()
+        board.tick()
+        board.rotateLeft()
+
+        expect(board.toString()).to.equalShape(
+            `..........
+           ..........
+           ..........
+           ..........
+           ....T.....
+           ...TTT....`
+        );
+    });
 });

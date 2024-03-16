@@ -80,7 +80,7 @@ export class Board {
   }
 
   canTryWallKick(block) {
-    return !this.isInsideBoard(block)
+    return !this.isInsideBoard(block) && this.isAboveBottom(block)
   }
 
   tryWallKick() {
@@ -91,6 +91,14 @@ export class Board {
   coversXY(x, y, block) {
     return (block.x <= x && x <= block.x + (block.shape[0].length - 1))
       && (y <= block.y && y >= block.y - (block.shape.length - 1))
+  }
+
+  isAboveBottom(block) {
+    let result = true
+    for (let y = 0; y < block.shape.length; y++) {
+      for (let x = 0; x < block.shape[0].length; x++) { if (block.shape[y][x] !== "." && block.y - y < 0) { result = false } }
+    }
+    return result
   }
 
   isInsideBoard(block) {
