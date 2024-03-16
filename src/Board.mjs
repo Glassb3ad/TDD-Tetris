@@ -22,6 +22,12 @@ export class Board {
     this.falling = { shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1, tetromino: c }
   }
 
+  stopBlock(block) {
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) { if (this.occupiesXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
+    }
+  }
+
   hasFalling() {
     return !!this.falling
   }
@@ -34,12 +40,6 @@ export class Board {
     else {
       this.stopBlock(this.falling)
       this.falling = null
-    }
-  }
-
-  stopBlock(block) {
-    for (let y = 0; y < this.height; y++) {
-      for (let x = 0; x < this.width; x++) { if (this.occupiesXY(x, y, block)) { this.dropped.set(`${x}${y}`, block.shape[block.y - y][x - block.x]) } }
     }
   }
 
