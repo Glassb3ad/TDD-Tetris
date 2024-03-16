@@ -63,6 +63,15 @@ export class Board {
     return this.occupiesX(0, block)
   }
 
+  hasBlockLeft(block) {
+    let res = false
+    this.dropped.forEach((_, key) => {
+      const [x, y] = key.split("")
+      if (this.occupiesXY(Number.parseInt(x) + 1, Number.parseInt(y), block)) res = true
+    })
+    return res
+  }
+
   moveRight() {
     if (this.canMoveRight(this.falling)) {
       this.falling.x = this.falling.x + 1
@@ -101,15 +110,6 @@ export class Board {
     this.dropped.forEach((_, key) => {
       const [x, y] = key.split("")
       if (this.occupiesXY(Number.parseInt(x), Number.parseInt(y) + 1, block)) res = true
-    })
-    return res
-  }
-
-  hasBlockLeft(block) {
-    let res = false
-    this.dropped.forEach((_, key) => {
-      const [x, y] = key.split("")
-      if (this.occupiesXY(Number.parseInt(x) + 1, Number.parseInt(y), block)) res = true
     })
     return res
   }
