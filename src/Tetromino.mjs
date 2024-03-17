@@ -130,9 +130,11 @@ export class Tetromino2 {
 
     rotateRight() {
         if (this.type) return this.rotateDirectionRight(this, getDirectionMap(this.type))
+        return new Tetromino(this.shape.rotateRight().shape)
     }
 
     rotateLeft() {
         if (this.type) return this.rotateDirectionLeft(this, getDirectionMap(this.type))
+        return new Tetromino(this.shape.rotateLeft().shape)
     }
 }
