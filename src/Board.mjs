@@ -91,7 +91,8 @@ export class Board {
   }
 
   clearFullLines() {
-    if (this.lineFull(0)) this.clearLine(0)
+    for (let y = this.height - 1; y >= 0; y--)
+      if (this.lineFull(y)) this.clearLine(y)
   }
 
   hasFalling() {
