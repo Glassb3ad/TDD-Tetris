@@ -109,6 +109,13 @@ export class Board {
     }
   }
 
+  move(block) {
+    if (this.canOccupyBoard(block)) {
+      this.falling = block
+      return true
+    }
+  }
+
   canOccupyBoard(block) {
     return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
   }
