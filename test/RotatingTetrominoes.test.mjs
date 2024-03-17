@@ -164,15 +164,15 @@ describe("The L shape", () => {
         .L.`
     );
   });
+
+  test("can be rotated left/counter-clockwise", () => {
+    expect(shape.rotateLeft().toString()).to.equalShape(
+      `.L.
+        .L.
+        .LL`
+    );
+  });
   /*
-    test("can be rotated left/counter-clockwise", () => {
-      expect(shape.rotateLeft().toString()).to.equalShape(
-        `.JJ
-         .J.
-         .J.`
-      );
-    });
-  
     test("has 4 distinct orientations", () => {
       expect(distinctOrientations(shape).size).to.equal(4);
     }); */
