@@ -257,4 +257,74 @@ describe("Nintendo scoring system", () => {
         );
         expect(scoreCounter.getScore()).to.equal(300)
     });
+
+    test("Clearing 4 lines equals 1200 point increase", () => {
+        const scoreCounter = new NintendoScoreSystem()
+        board.subscribe(scoreCounter);
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.rotateLeft()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.rotateLeft()
+        fallToBottom(board)
+        expect(board.toString()).to.equalShape(
+            `..........
+            ..........
+            ..........
+            ..........
+            ..........
+            ..........`
+        );
+        expect(scoreCounter.getScore()).to.equal(1200)
+    });
 });
