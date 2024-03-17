@@ -462,4 +462,75 @@ describe("Nintendo scoring system", () => {
         );
         expect(scoreCounter.getScore()).to.equal(300 * (3 + 1))
     });
+
+    test("Clearing 4 lines on level n equals 1200 * (n + 1) points", () => {
+        const scoreCounter = new NintendoScoreSystem()
+        board.subscribe(scoreCounter);
+        scoreCounter.setLevel(3);
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.rotateLeft()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.rotateLeft()
+        fallToBottom(board)
+        expect(board.toString()).to.equalShape(
+            `..........
+            ..........
+            ..........
+            ..........
+            ..........
+            ..........`
+        );
+        expect(scoreCounter.getScore()).to.equal(1200 * (3 + 1))
+    });
 });
