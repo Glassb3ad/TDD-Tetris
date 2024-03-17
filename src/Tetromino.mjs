@@ -1,5 +1,15 @@
 import { RotatingShape } from "./RotatingShape.mjs";
 
+const I_SHAPE_DIRECTION_MAP = {
+    "UP": [[
+        [".", ".", "I", ".", "."],
+        [".", ".", "I", ".", "."],
+        [".", ".", "I", ".", "."],
+        [".", ".", "I", ".", "."],
+        [".", ".", ".", ".", "."]
+    ]]
+}
+
 const T_SHAPE_DIRECTION_MAP = {
     "UP": [["T", "T", "T"], [".", "T", "."], [".", ".", "."]],
     "LEFT": [[".", "T", "."], [".", "T", "T"], [".", "T", "."]],
