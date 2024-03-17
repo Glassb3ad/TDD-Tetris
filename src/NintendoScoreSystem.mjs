@@ -1,8 +1,8 @@
-const LEVEL_POINTS_MAP = {
-    1: (l) => 40 * (l + 1),
-    2: (l) => 100 * (l + 1),
-    3: (l) => 300 * (l + 1),
-    4: (l) => 1200 * (l + 1)
+const POINTS_PER_LINES = {
+    1: 40,
+    2: 100,
+    3: 300,
+    4: 1200,
 }
 export class NintendoScoreSystem {
     constructor() {
@@ -10,7 +10,7 @@ export class NintendoScoreSystem {
         this.level = 0
     }
     update(linesCleared) {
-        this.score = this.score + LEVEL_POINTS_MAP[linesCleared](this.level)
+        this.score = this.score + (POINTS_PER_LINES[linesCleared] * (this.level + 1))
     }
     getScore() {
         return this.score
