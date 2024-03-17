@@ -1,4 +1,10 @@
 class Block {
+  constructor({ x, y, shape, tetromino }) {
+    this.x = x
+    this.y = y
+    this.shape = shape
+    this.tetromino = tetromino
+  }
   static toShape(arg) { return arg.toString().split("\n").map(a => a.split("")).filter(a => a[0]) }
 }
 
@@ -19,7 +25,7 @@ export class Board {
       throw new Error("already falling")
     }
     const shape = Block.toShape(c)
-    this.falling = { shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1, tetromino: c }
+    this.falling = new Block({ shape, x: Math.floor((this.width / 2) - (shape[0].length / 2)), y: this.height - 1, tetromino: c })
   }
 
   stopBlock(block) {
