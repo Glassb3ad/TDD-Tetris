@@ -71,7 +71,7 @@ export class Board {
   moveLeft() {
     const blockMovedLeft = this.falling.moveLeft()
     if (this.canOccupyBoard(blockMovedLeft)) {
-      this.falling.x = this.falling.x - 1
+      this.falling = blockMovedLeft
       return true
     }
   }
