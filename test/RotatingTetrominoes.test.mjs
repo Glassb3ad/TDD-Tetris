@@ -36,7 +36,6 @@ describe("The T shape", () => {
   });
 
   test("can be rotated left/counter-clockwise", () => {
-    console.log({ shape2 })
     expect(shape2.rotateLeft().toString()).to.equalShape(
       `.T.
        .TT

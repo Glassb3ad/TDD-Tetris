@@ -74,6 +74,15 @@ export class Tetromino2 {
             case "RIGHT": return new Tetromino2(shapeDirectionMap.UP, "UP")
         }
     }
+    rotateDirectionRight(tetromino, shapeDirectionMap) {
+        switch (tetromino.direction) {
+            case "UP": return new Tetromino2(shapeDirectionMap.RIGHT, "RIGHT")
+            case "RIGHT": return new Tetromino2(shapeDirectionMap.DOWN, "DOWN")
+            case "DOWN": return new Tetromino2(shapeDirectionMap.LEFT, "LEFT")
+            case "LEFT": return new Tetromino2(shapeDirectionMap.UP, "UP")
+        }
+    }
+
     toString() {
         console.log(this.shape)
         return this.shape.toString()
