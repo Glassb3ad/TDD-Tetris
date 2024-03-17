@@ -73,6 +73,15 @@ export class Board {
     }
   }
 
+  clearLine(y) {
+    const newDropped = new Map()
+    this.dropped.forEach((val, key) => {
+      const xy = key.split("").map(a => Number.parseInt(a))
+      if (xy[1] === y) { return }; newDropped.set(`${xy[0]}${xy[1] - 1}`, val)
+    }); this.dropped = newDropped
+  }
+  lineFull(y) { let full = true; for (let x = 0; x < this.width; x++) { if (!this.dropped.has(`${x}${y}`)) full = false; }; return full }
+  clearFullLines() { if (this.lineFull(0)) this.clearLine(0) }
   hasFalling() {
     return !!this.falling
   }
@@ -86,6 +95,7 @@ export class Board {
     else if (this.hasFalling()) {
       this.stopBlock(this.falling)
       this.falling = null
+      this.clearFullLines()
     }
   }
 
