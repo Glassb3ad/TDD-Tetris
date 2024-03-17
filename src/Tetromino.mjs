@@ -2,9 +2,9 @@ import { RotatingShape } from "./RotatingShape.mjs";
 
 export class Tetromino {
     shape;
-    constructor(shape) {
+    constructor(shape, direction) {
         this.shape = new RotatingShape(shape)
-        this.position = "UP"
+        this.direction = direction || "UP"
     }
 
     static T_SHAPE = new Tetromino([[".", "T", "."], ["T", "T", "T"], [".", ".", "."]])
@@ -17,6 +17,14 @@ export class Tetromino {
     ])
     static O_SHAPE = new Tetromino([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]])
 
+    rotateDirectionLeft(tetromino) {
+        switch (tetromino.direction) {
+            case "UP": new Tetromino(this.shape.shape, "LEFT")
+            case "LEFT": new Tetromino(this.shape.shape, "DOWN")
+            case "DOWN": new Tetromino(this.shape.shape, "RIGHT")
+            case "DOWN": new Tetromino(this.shape.shape, "RIGHT")
+        }
+    }
     toString() {
         return this.shape.toString()
     }
