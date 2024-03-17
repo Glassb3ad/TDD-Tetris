@@ -103,7 +103,7 @@ describe("Falling tetrominoes", () => {
     });
 
     test("cannot be moved left through other blocks", () => {
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(new Tetromino2(TETROMINO_SHAPE));
         board.moveDown()
         board.moveDown()
         board.moveDown()
