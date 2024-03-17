@@ -83,7 +83,7 @@ export class Board {
 
   moveDown() {
     if (!this.hasFalling()) return
-    if (this.move(this.falling.moveDown())) return
+    if (this.replaceFalling(this.falling.moveDown())) return
     else {
       this.stopBlock(this.falling)
       this.falling = null
@@ -91,11 +91,11 @@ export class Board {
   }
 
   moveLeft() {
-    return this.move(this.falling.moveLeft())
+    return this.replaceFalling(this.falling.moveLeft())
   }
 
   moveRight() {
-    return this.move(this.falling.moveRight())
+    return this.replaceFalling(this.falling.moveRight())
   }
 
   rotateLeft() {
@@ -111,7 +111,7 @@ export class Board {
     if (this.canTryWallKick(block)) { return this.tryWallKick() }
   }
 
-  move(block) {
+  replaceFalling(block) {
     if (this.canOccupyBoard(block)) {
       this.falling = block
       return true
