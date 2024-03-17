@@ -23,12 +23,12 @@ export class Tetromino {
     ])
     static O_SHAPE = new Tetromino([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]])
 
-    rotateDirectionLeft(tetromino) {
+    rotateDirectionLeft(tetromino, shapeDirectionMap) {
         switch (tetromino.direction) {
-            case "UP": new Tetromino(this.shape.shape, "LEFT")
-            case "LEFT": new Tetromino(this.shape.shape, "DOWN")
-            case "DOWN": new Tetromino(this.shape.shape, "RIGHT")
-            case "RIGHT": new Tetromino(this.shape.shape, "UP")
+            case "UP": new Tetromino(shapeDirectionMap.LEFT, "LEFT")
+            case "LEFT": new Tetromino(shapeDirectionMap.DOWN, "DOWN")
+            case "DOWN": new Tetromino(shapeDirectionMap.RIGHT, "RIGHT")
+            case "RIGHT": new Tetromino(shapeDirectionMap.UP, "UP")
         }
     }
     toString() {
