@@ -156,4 +156,44 @@ describe("Nintendo scoring system", () => {
         );
         expect(scoreCounter.getScore()).to.equal(40)
     });
+
+    test("Clearing 2 lines equals 100 point increase", () => {
+        const scoreCounter = new NintendoScoreSystem()
+        board.subscribe(scoreCounter);
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.O_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        expect(board.toString()).to.equalShape(
+            `..........
+            ..........
+            ..........
+            ..........
+            ..........
+            ..........`
+        );
+        expect(scoreCounter.getScore()).to.equal(100)
+    });
 });
