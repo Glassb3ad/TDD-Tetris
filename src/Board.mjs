@@ -80,7 +80,15 @@ export class Board {
       if (xy[1] === y) { return }; newDropped.set(`${xy[0]}${xy[1] - 1}`, val)
     }); this.dropped = newDropped
   }
-  lineFull(y) { let full = true; for (let x = 0; x < this.width; x++) { if (!this.dropped.has(`${x}${y}`)) full = false; }; return full }
+
+  lineFull(y) {
+    let full = true;
+    for (let x = 0; x < this.width; x++) {
+      if (!this.dropped.has(`${x}${y}`)) full = false;
+    };
+    return full
+  }
+
   clearFullLines() { if (this.lineFull(0)) this.clearLine(0) }
   hasFalling() {
     return !!this.falling
