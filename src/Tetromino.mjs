@@ -38,6 +38,13 @@ const T_SHAPE_DIRECTION_MAP = {
     "RIGHT": [[".", "T", "."], ["T", "T", "."], [".", "T", "."]],
 }
 
+const O_SHAPE_DIRECTION_MAP = {
+    "UP": [[".", "O", "O"], [".", "O", "O"], [".", ".", "."]],
+    "LEFT": [[".", "O", "O"], [".", "O", "O"], [".", ".", "."]],
+    "DOWN": [[".", "O", "O"], [".", "O", "O"], [".", ".", "."]],
+    "RIGHT": [[".", "O", "O"], [".", "O", "O"], [".", ".", "."]],
+}
+
 const getDirectionMap = (type) => {
     switch (type) {
         case ("T"): return T_SHAPE_DIRECTION_MAP
