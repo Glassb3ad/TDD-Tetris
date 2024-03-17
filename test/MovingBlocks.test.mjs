@@ -4,6 +4,7 @@ import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
 import { Tetromino2 } from "../src/Tetromino.mjs";
 
+const TETROMINO_SHAPE = [[".", "T", "."], ["T", "T", "T"], [".", ".", "."]]
 describe("Falling tetrominoes", () => {
     let board;
     beforeEach(() => {
@@ -66,15 +67,15 @@ describe("Falling tetrominoes", () => {
     });
 
     test("cannot be moved right beyond the board", () => {
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(Tetromino2.T_SHAPE);
         board.moveRight()
         board.moveRight()
         board.moveRight()
         board.moveRight()
         board.moveRight()
         expect(board.toString()).to.equalShape(
-            `........T.
-            .......TTT
+            `.......TTT
+            ........T.
             ..........
             ..........
             ..........
@@ -83,7 +84,7 @@ describe("Falling tetrominoes", () => {
     });
 
     test("cannot be moved down beyond the board", () => {
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(new Tetromino2(TETROMINO_SHAPE));
         board.moveDown()
         board.moveDown()
         board.moveDown()
