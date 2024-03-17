@@ -32,7 +32,7 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Block can be rotated right", () => {
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
         board.rotateRight()
         expect(board.toString()).to.equalShape(
             `....T.....
