@@ -84,6 +84,11 @@ export class Board {
     this.dropped = newDropped
   }
 
+  clearFullLines() {
+    for (let y = this.height - 1; y >= 0; y--)
+      if (this.lineFull(y)) this.clearLine(y)
+  }
+
   lineFull(y) {
     let full = true;
     for (let x = 0; x < this.width; x++) {
@@ -92,10 +97,6 @@ export class Board {
     return full
   }
 
-  clearFullLines() {
-    for (let y = this.height - 1; y >= 0; y--)
-      if (this.lineFull(y)) this.clearLine(y)
-  }
 
   hasFalling() {
     return !!this.falling
