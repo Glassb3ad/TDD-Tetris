@@ -38,6 +38,10 @@ const T_SHAPE_DIRECTION_MAP = {
     "RIGHT": [[".", "T", "."], ["T", "T", "."], [".", "T", "."]],
 }
 
+const J_SHAPE_DIRECTION_MAP = {
+    "UP": [[".", ".", "."], ["J", "J", "J"], [".", ".", "J"]],
+}
+
 const O_SHAPE_DIRECTION_MAP = {
     "UP": [[".", "O", "O"], [".", "O", "O"], [".", ".", "."]],
     "LEFT": [[".", "O", "O"], [".", "O", "O"], [".", ".", "."]],
@@ -49,6 +53,7 @@ const getDirectionMap = (type) => {
     switch (type) {
         case ("T"): return T_SHAPE_DIRECTION_MAP
         case ("I"): return I_SHAPE_DIRECTION_MAP
+        case ("J"): return J_SHAPE_DIRECTION_MAP
         case ("O"): return O_SHAPE_DIRECTION_MAP
     }
 }
@@ -63,6 +68,7 @@ export class Tetromino {
     static T_SHAPE = new Tetromino(T_SHAPE_DIRECTION_MAP.UP, null, "T")
     static I_SHAPE = new Tetromino(I_SHAPE_DIRECTION_MAP.UP, null, "I")
     static O_SHAPE = new Tetromino([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]], null, "O")
+    static J_SHAPE = new Tetromino(J_SHAPE_DIRECTION_MAP.UP, null, "J")
 
     rotateDirectionLeft(tetromino, shapeDirectionMap) {
         switch (tetromino.direction) {
