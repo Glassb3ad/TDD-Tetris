@@ -37,6 +37,12 @@ const T_SHAPE_DIRECTION_MAP = {
     "DOWN": [[".", "T", "."], ["T", "T", "T"], [".", ".", "."]],
     "RIGHT": [[".", "T", "."], ["T", "T", "."], [".", "T", "."]],
 }
+
+const getDirectionMap = (tetromino) => {
+    const shape = tetromino.toString()
+    if (shape.includes("T")) return T_SHAPE_DIRECTION_MAP
+    if (shape.includes("I")) return I_SHAPE_DIRECTION_MAP
+}
 export class Tetromino {
     shape;
     constructor(shape, direction) {
@@ -127,6 +133,6 @@ export class Tetromino2 {
     rotateLeft() {
         if (this.shape.shape[2][0] === "I") return this.rotateRight()
         if (this.shape.shape.some(a => a.includes("O"))) return this
-        return this.rotateDirectionLeft(this, T_SHAPE_DIRECTION_MAP)
+        return this.rotateDirectionLeft(this, getDirectionMap(this))
     }
 }
