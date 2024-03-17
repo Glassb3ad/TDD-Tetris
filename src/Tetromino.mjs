@@ -38,28 +38,28 @@ const T_SHAPE_DIRECTION_MAP = {
     "RIGHT": [[".", "T", "."], ["T", "T", "."], [".", "T", "."]],
 }
 
-const getDirectionMap = (tetromino) => {
-    const shape = tetromino.toString()
-    if (shape.includes("T")) return T_SHAPE_DIRECTION_MAP
-    if (shape.includes("I")) return I_SHAPE_DIRECTION_MAP
+const getDirectionMap = (type) => {
+    switch (type) {
+        case ("T"): return T_SHAPE_DIRECTION_MAP
+        case ("I"): return I_SHAPE_DIRECTION_MAP
+    }
 }
 export class Tetromino {
     shape;
-    constructor(shape, direction, type) {
+    constructor(shape, direction) {
         this.shape = new RotatingShape(shape)
         this.direction = direction || "UP"
-        this.type = type
     }
 
-    static T_SHAPE = new Tetromino([[".", "T", "."], ["T", "T", "T"], [".", ".", "."]], "T")
+    static T_SHAPE = new Tetromino([[".", "T", "."], ["T", "T", "T"], [".", ".", "."]])
     static I_SHAPE = new Tetromino([
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."],
         ["I", "I", "I", "I", "."],
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."]
-    ], "I")
-    static O_SHAPE = new Tetromino([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]], "O")
+    ])
+    static O_SHAPE = new Tetromino([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]])
 
     rotateDirectionLeft(tetromino, shapeDirectionMap) {
         switch (tetromino.direction) {
@@ -88,30 +88,31 @@ export class Tetromino {
 
 export class Tetromino2 {
     shape;
-    constructor(shape, direction) {
+    constructor(shape, direction, type) {
         this.shape = new RotatingShape(shape)
         this.direction = direction || "UP"
+        this.type = type
     }
 
-    static T_SHAPE = new Tetromino2(T_SHAPE_DIRECTION_MAP.UP)
-    static I_SHAPE = new Tetromino2(I_SHAPE_DIRECTION_MAP.UP)
+    static T_SHAPE = new Tetromino2(T_SHAPE_DIRECTION_MAP.UP, null, "T")
+    static I_SHAPE = new Tetromino2(I_SHAPE_DIRECTION_MAP.UP, null, "I")
     static O_SHAPE = new Tetromino2([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]])
 
     rotateDirectionLeft(tetromino, shapeDirectionMap) {
         switch (tetromino.direction) {
-            case "UP": return new Tetromino2(shapeDirectionMap.LEFT, "LEFT")
-            case "LEFT": return new Tetromino2(shapeDirectionMap.DOWN, "DOWN")
-            case "DOWN": return new Tetromino2(shapeDirectionMap.RIGHT, "RIGHT")
-            case "RIGHT": return new Tetromino2(shapeDirectionMap.UP, "UP")
+            case "UP": return new Tetromino2(shapeDirectionMap.LEFT, "LEFT", tetromino.type)
+            case "LEFT": return new Tetromino2(shapeDirectionMap.DOWN, "DOWN", tetromino.type)
+            case "DOWN": return new Tetromino2(shapeDirectionMap.RIGHT, "RIGHT", tetromino.type)
+            case "RIGHT": return new Tetromino2(shapeDirectionMap.UP, "UP", tetromino.type)
         }
     }
 
     rotateDirectionRight(tetromino, shapeDirectionMap) {
         switch (tetromino.direction) {
-            case "UP": return new Tetromino2(shapeDirectionMap.RIGHT, "RIGHT")
-            case "RIGHT": return new Tetromino2(shapeDirectionMap.DOWN, "DOWN")
-            case "DOWN": return new Tetromino2(shapeDirectionMap.LEFT, "LEFT")
-            case "LEFT": return new Tetromino2(shapeDirectionMap.UP, "UP")
+            case "UP": return new Tetromino2(shapeDirectionMap.RIGHT, "RIGHT", tetromino.type)
+            case "RIGHT": return new Tetromino2(shapeDirectionMap.DOWN, "DOWN", tetromino.type)
+            case "DOWN": return new Tetromino2(shapeDirectionMap.LEFT, "LEFT", tetromino.type)
+            case "LEFT": return new Tetromino2(shapeDirectionMap.UP, "UP", tetromino.type)
         }
     }
 
@@ -121,11 +122,11 @@ export class Tetromino2 {
 
     rotateRight() {
         if (this.shape.shape.some(a => a.includes("O"))) return this
-        return this.rotateDirectionRight(this, getDirectionMap(this))
+        return this.rotateDirectionRight(this, getDirectionMap(this.type))
     }
 
     rotateLeft() {
         if (this.shape.shape.some(a => a.includes("O"))) return this
-        return this.rotateDirectionLeft(this, getDirectionMap(this))
+        return this.rotateDirectionLeft(this, getDirectionMap(this.type))
     }
 }
