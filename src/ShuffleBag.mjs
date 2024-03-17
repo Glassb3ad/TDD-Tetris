@@ -1,4 +1,5 @@
 export class ShuffleBag {
+
     constructor(values) {
         this.valuePool = [...values]
         this.bag = this.shuffle()
