@@ -6,6 +6,14 @@ class Block {
     this.tetromino = tetromino
   }
   static toShape(arg) { return arg.toString().split("\n").map(a => a.split("")).filter(a => a[0]) }
+
+  moveRight() {
+    return new Block({
+      x: this.x + 1,
+      y: this.y,
+      tetromino: this.tetromino
+    })
+  }
 }
 
 export class Board {
@@ -79,7 +87,7 @@ export class Board {
   }
 
   rotate(tetromino) {
-    const newBlock = { ...this.falling, shape: Block.toShape(tetromino), tetromino };
+    const newBlock = new Block({ x: this.falling.x, y: this.falling.y, tetromino });
     if (this.canOccupyBoard(newBlock)) { this.falling = newBlock }
     if (this.canTryWallKick(newBlock)) { return this.tryWallKick() }
   }
