@@ -1,11 +1,14 @@
 export class ShuffleBag {
     constructor(values) {
         this.valuePool = [...values]
-        this.bag = [...values]
+        this.bag = this.shuffle()
     }
 
     shuffle() {
-        return [...this.valuePool]
+        return this.valuePool
+            .map(value => ({ value, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ value }) => value)
     }
 
     take() {
