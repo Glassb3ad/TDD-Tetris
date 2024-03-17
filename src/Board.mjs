@@ -30,6 +30,14 @@ class Block {
       tetromino: this.tetromino.rotateLeft()
     })
   }
+
+  rotateRight() {
+    return new Block({
+      x: this.x,
+      y: this.y,
+      tetromino: this.tetromino.rotateRight()
+    })
+  }
 }
 
 export class Board {
@@ -101,7 +109,7 @@ export class Board {
   }
 
   rotateRight() {
-    this.rotate(new Block({ x: this.falling.x, y: this.falling.y, tetromino: this.falling.tetromino.rotateRight() }))
+    this.rotate(this.falling.rotateRight())
   }
 
   rotate(block) {
