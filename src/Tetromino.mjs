@@ -49,6 +49,7 @@ const getDirectionMap = (type) => {
     switch (type) {
         case ("T"): return T_SHAPE_DIRECTION_MAP
         case ("I"): return I_SHAPE_DIRECTION_MAP
+        case ("O"): return O_SHAPE_DIRECTION_MAP
     }
 }
 export class Tetromino {
@@ -128,12 +129,10 @@ export class Tetromino2 {
     }
 
     rotateRight() {
-        if (this.type === "O") return this
         if (this.type) return this.rotateDirectionRight(this, getDirectionMap(this.type))
     }
 
     rotateLeft() {
-        if (this.type === "O") return this
         if (this.type) return this.rotateDirectionLeft(this, getDirectionMap(this.type))
     }
 }
