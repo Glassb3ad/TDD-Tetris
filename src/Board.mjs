@@ -98,17 +98,6 @@ export class Board {
     return this.move(this.falling.moveRight())
   }
 
-  move(block) {
-    if (this.canOccupyBoard(block)) {
-      this.falling = block
-      return true
-    }
-  }
-
-  canOccupyBoard(block) {
-    return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
-  }
-
   rotateLeft() {
     this.rotate(this.falling.rotateLeft())
   }
@@ -122,6 +111,16 @@ export class Board {
     if (this.canTryWallKick(block)) { return this.tryWallKick() }
   }
 
+  move(block) {
+    if (this.canOccupyBoard(block)) {
+      this.falling = block
+      return true
+    }
+  }
+
+  canOccupyBoard(block) {
+    return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
+  }
   canTryWallKick(block) {
     return !this.isInsideBoard(block) && this.isAboveBottom(block)
   }
