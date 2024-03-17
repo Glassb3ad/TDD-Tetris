@@ -28,6 +28,25 @@ describe("Game allows score counting", () => {
         board = new Board(10, 6);
     });
 
+    test("Update methdod of subscribed score system is not called if no line is cleared", () => {
+        const scoreCounter = new SimpleScoreSystem()
+        board.subscribe(scoreCounter);
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        expect(board.toString()).to.equalShape(
+            `..........
+            ..........
+            ..........
+            ..........
+            ..........
+            IIII......`
+        );
+        expect(scoreCounter.getScore()).to.equal(0)
+    });
+
     test("Update methdon of subscribed score system is called when line is cleared", () => {
         const scoreCounter = new SimpleScoreSystem()
         board.subscribe(scoreCounter);
