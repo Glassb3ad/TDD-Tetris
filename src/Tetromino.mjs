@@ -67,10 +67,10 @@ export class Tetromino2 {
 
     rotateDirectionLeft(tetromino, shapeDirectionMap) {
         switch (tetromino.direction) {
-            case "UP": new Tetromino(shapeDirectionMap.LEFT, "LEFT")
-            case "LEFT": new Tetromino(shapeDirectionMap.DOWN, "DOWN")
-            case "DOWN": new Tetromino(shapeDirectionMap.RIGHT, "RIGHT")
-            case "RIGHT": new Tetromino(shapeDirectionMap.UP, "UP")
+            case "UP": return new Tetromino(shapeDirectionMap.LEFT, "LEFT")
+            case "LEFT": return new Tetromino(shapeDirectionMap.DOWN, "DOWN")
+            case "DOWN": return new Tetromino(shapeDirectionMap.RIGHT, "RIGHT")
+            case "RIGHT": return new Tetromino(shapeDirectionMap.UP, "UP")
         }
     }
     toString() {
@@ -86,6 +86,6 @@ export class Tetromino2 {
     rotateLeft() {
         if (this.shape.shape[2][0] === "I") return this.rotateRight()
         if (this.shape.shape.some(a => a.includes("O"))) return this
-        return new Tetromino(this.shape.rotateLeft().shape)
+        return this.rotateDirectionLeft(this, T_SHAPE_DIRECTION_MAP)
     }
 }
