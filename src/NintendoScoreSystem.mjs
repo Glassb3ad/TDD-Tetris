@@ -9,11 +9,16 @@ export class NintendoScoreSystem {
         this.score = 0
         this.level = 0
     }
+
     update(linesCleared) {
         this.score = this.score + (POINTS_PER_LINES[linesCleared] * (this.level + 1))
     }
+
     getScore() {
         return this.score
     }
-    setLevel(level) { this.level = level }
+
+    setLevel(level) {
+        this.level = level
+    }
 }
