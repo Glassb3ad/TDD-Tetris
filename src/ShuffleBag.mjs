@@ -4,5 +4,14 @@ export class ShuffleBag {
         this.bag = [...values]
     }
 
-    take() { return this.bag.pop() }
+    shuffle() {
+        return [...this.valuePool]
+    }
+
+    take() {
+        if (this.bag.length === 0) {
+            this.bag = this.shuffle()
+        }
+        return this.bag.pop()
+    }
 } 
