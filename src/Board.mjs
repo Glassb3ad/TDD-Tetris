@@ -79,8 +79,14 @@ export class Board {
   }
 
   clearFullLines() {
-    for (let y = this.height - 1; y >= 0; y--)
-      if (this.lineFull(y)) this.clearLine(y)
+    let linesCleared = 0
+    for (let y = this.height - 1; y >= 0; y--) {
+      if (this.lineFull(y)) {
+        this.clearLine(y)
+        linesCleared++
+      }
+    }
+    if (linesCleared > 0) { this.scoreCounters.forEach(counter => counter.update(linesCleared)) }
   }
 
   lineFull(y) {
