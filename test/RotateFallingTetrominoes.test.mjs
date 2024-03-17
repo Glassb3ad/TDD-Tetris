@@ -81,7 +81,7 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Can wall kick left side", () => {
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
         board.rotateRight()
         board.moveLeft()
         board.moveLeft()
