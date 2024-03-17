@@ -1,5 +1,11 @@
 import { RotatingShape } from "./RotatingShape.mjs";
 
+const T_SHAPE_DIRECTION_MAP = {
+    "UP": [["T", "T", "T"], [".", "T", "."], [".", ".", "."]],
+    "LEFT": [[".", "T", "."], [".", "T", "T"], [".", "T", "."]],
+    "DOWN": [[".", "T", "."], ["T", "T", "T"], [".", ".", "."]],
+    "RIGHT": [[".", "T", "."], ["T", "T", "."], [".", "T", "."]],
+}
 export class Tetromino {
     shape;
     constructor(shape, direction) {
@@ -22,7 +28,7 @@ export class Tetromino {
             case "UP": new Tetromino(this.shape.shape, "LEFT")
             case "LEFT": new Tetromino(this.shape.shape, "DOWN")
             case "DOWN": new Tetromino(this.shape.shape, "RIGHT")
-            case "DOWN": new Tetromino(this.shape.shape, "RIGHT")
+            case "RIGHT": new Tetromino(this.shape.shape, "UP")
         }
     }
     toString() {
