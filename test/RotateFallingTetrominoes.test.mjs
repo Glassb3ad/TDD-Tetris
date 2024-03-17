@@ -45,9 +45,9 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Cant rotate left through another block", () => {
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
         fallToBottom(board);
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
         board.tick()
         board.tick()
         board.rotateLeft()
