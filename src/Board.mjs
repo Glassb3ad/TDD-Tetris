@@ -14,6 +14,14 @@ class Block {
       tetromino: this.tetromino
     })
   }
+
+  moveLeft() {
+    return new Block({
+      x: this.x - 1,
+      y: this.y,
+      tetromino: this.tetromino
+    })
+  }
 }
 
 export class Board {
@@ -61,7 +69,8 @@ export class Board {
   }
 
   moveLeft() {
-    if (this.canOccupyBoard({ ...this.falling, x: this.falling.x - 1 })) {
+    const blockMovedLeft = this.falling.moveLeft()
+    if (this.canOccupyBoard(blockMovedLeft)) {
       this.falling.x = this.falling.x - 1
       return true
     }
