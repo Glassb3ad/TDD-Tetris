@@ -2,7 +2,6 @@ import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
-import { Tetromino2 } from "../src/Tetromino.mjs";
 
 const CUSTOM_TETROMINO_SHAPE = [[".", "T", "."], ["T", "T", "T"], [".", ".", "."]]
 
@@ -19,7 +18,7 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Can be rotated left", () => {
-        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
+        board.drop(new Tetromino(CUSTOM_TETROMINO_SHAPE));
         board.rotateLeft()
         expect(board.toString()).to.equalShape(
             `....T.....
@@ -32,7 +31,7 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Block can be rotated right", () => {
-        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
+        board.drop(new Tetromino(CUSTOM_TETROMINO_SHAPE));
         board.rotateRight()
         expect(board.toString()).to.equalShape(
             `....T.....
@@ -45,9 +44,9 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Cant rotate left through another block", () => {
-        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
+        board.drop(new Tetromino(CUSTOM_TETROMINO_SHAPE));
         fallToBottom(board);
-        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
+        board.drop(new Tetromino(CUSTOM_TETROMINO_SHAPE));
         board.tick()
         board.tick()
         board.rotateLeft()
@@ -63,9 +62,9 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Cant rotate right through another block", () => {
-        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
+        board.drop(new Tetromino(CUSTOM_TETROMINO_SHAPE));
         fallToBottom(board);
-        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
+        board.drop(new Tetromino(CUSTOM_TETROMINO_SHAPE));
         board.tick()
         board.tick()
         board.rotateRight()
@@ -81,7 +80,7 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Can wall kick left side", () => {
-        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
+        board.drop(new Tetromino(CUSTOM_TETROMINO_SHAPE));
         board.rotateRight()
         board.moveLeft()
         board.moveLeft()
@@ -99,7 +98,7 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Can wall kick right side", () => {
-        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
+        board.drop(new Tetromino(CUSTOM_TETROMINO_SHAPE));
         board.rotateLeft()
         board.moveRight()
         board.moveRight()
@@ -118,7 +117,7 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Cant floow kick", () => {
-        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
+        board.drop(new Tetromino(CUSTOM_TETROMINO_SHAPE));
         board.tick()
         board.tick()
         board.tick()

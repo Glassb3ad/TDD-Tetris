@@ -1,7 +1,7 @@
 import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { Tetromino2 } from "../src/Tetromino.mjs";
+import { Tetromino } from "../src/Tetromino.mjs";
 
 const TETROMINO_SHAPE = [[".", "T", "."], ["T", "T", "T"], [".", ".", "."]]
 describe("Falling tetrominoes", () => {
@@ -11,7 +11,7 @@ describe("Falling tetrominoes", () => {
     });
 
     test("Can be moved left", () => {
-        board.drop(Tetromino2.T_SHAPE);
+        board.drop(Tetromino.T_SHAPE);
         board.moveLeft()
         expect(board.toString()).to.equalShape(
             `..TTT.....
@@ -24,7 +24,7 @@ describe("Falling tetrominoes", () => {
     });
 
     test("Can be moved right", () => {
-        board.drop(Tetromino2.T_SHAPE);
+        board.drop(Tetromino.T_SHAPE);
         board.moveRight()
         expect(board.toString()).to.equalShape(
             `....TTT...
@@ -37,7 +37,7 @@ describe("Falling tetrominoes", () => {
     });
 
     test("Can be moved down", () => {
-        board.drop(Tetromino2.T_SHAPE);
+        board.drop(Tetromino.T_SHAPE);
         board.moveDown()
         expect(board.toString()).to.equalShape(
             `..........
@@ -50,7 +50,7 @@ describe("Falling tetrominoes", () => {
     });
 
     test("cannot be moved left beyond the board", () => {
-        board.drop(Tetromino2.T_SHAPE);
+        board.drop(Tetromino.T_SHAPE);
         board.moveLeft()
         board.moveLeft()
         board.moveLeft()
@@ -66,7 +66,7 @@ describe("Falling tetrominoes", () => {
     });
 
     test("cannot be moved right beyond the board", () => {
-        board.drop(Tetromino2.T_SHAPE);
+        board.drop(Tetromino.T_SHAPE);
         board.moveRight()
         board.moveRight()
         board.moveRight()
@@ -83,7 +83,7 @@ describe("Falling tetrominoes", () => {
     });
 
     test("cannot be moved down beyond the board", () => {
-        board.drop(new Tetromino2(TETROMINO_SHAPE));
+        board.drop(new Tetromino(TETROMINO_SHAPE));
         board.moveDown()
         board.moveDown()
         board.moveDown()
@@ -102,14 +102,14 @@ describe("Falling tetrominoes", () => {
     });
 
     test("cannot be moved left through other blocks", () => {
-        board.drop(new Tetromino2(TETROMINO_SHAPE));
+        board.drop(new Tetromino(TETROMINO_SHAPE));
         board.moveDown()
         board.moveDown()
         board.moveDown()
         board.moveDown()
         board.moveDown()
 
-        board.drop(new Tetromino2(TETROMINO_SHAPE));
+        board.drop(new Tetromino(TETROMINO_SHAPE));
         board.moveRight()
         board.moveRight()
         board.moveDown()
@@ -128,7 +128,7 @@ describe("Falling tetrominoes", () => {
     });
 
     test("cannot be moved right through other blocks", () => {
-        board.drop(new Tetromino2(TETROMINO_SHAPE));
+        board.drop(new Tetromino(TETROMINO_SHAPE));
         board.moveDown()
         board.moveDown()
         board.moveDown()
@@ -137,7 +137,7 @@ describe("Falling tetrominoes", () => {
         board.moveRight()
         board.moveDown()
 
-        board.drop(new Tetromino2(TETROMINO_SHAPE));
+        board.drop(new Tetromino(TETROMINO_SHAPE));
         board.moveDown()
         board.moveDown()
         board.moveDown()
@@ -154,14 +154,14 @@ describe("Falling tetrominoes", () => {
     });
 
     test("cannot be moved down through other blocks", () => {
-        board.drop(new Tetromino2(TETROMINO_SHAPE));
+        board.drop(new Tetromino(TETROMINO_SHAPE));
         board.moveDown()
         board.moveDown()
         board.moveDown()
         board.moveDown()
         board.moveDown()
 
-        board.drop(new Tetromino2(TETROMINO_SHAPE));
+        board.drop(new Tetromino(TETROMINO_SHAPE));
         board.moveDown()
         board.moveDown()
         board.moveDown()
