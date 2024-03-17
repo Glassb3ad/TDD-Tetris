@@ -78,16 +78,16 @@ export class Board {
   }
 
   tick() {
+    this.moveDown()
+  }
+
+  moveDown() {
     if (!this.hasFalling()) return
     if (this.move(this.falling.moveDown())) return
     else {
       this.stopBlock(this.falling)
       this.falling = null
     }
-  }
-
-  moveDown() {
-    this.tick()
   }
 
   moveLeft() {
