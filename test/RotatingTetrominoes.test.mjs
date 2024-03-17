@@ -172,8 +172,8 @@ describe("The L shape", () => {
         .LL`
     );
   });
-  /*
-    test("has 4 distinct orientations", () => {
-      expect(distinctOrientations(shape).size).to.equal(4);
-    }); */
+
+  test("has 4 distinct orientations", () => {
+    expect(distinctOrientations(shape).size).to.equal(4);
+  });
 });
