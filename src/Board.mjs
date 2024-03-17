@@ -62,7 +62,7 @@ export class Board {
   }
 
   subscribe(counter) {
-    this.scoreCounters.add(counter)
+    this.scoreCounters.push(counter)
   }
 
   drop(c) {

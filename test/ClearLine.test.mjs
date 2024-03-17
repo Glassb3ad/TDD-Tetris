@@ -9,7 +9,7 @@ function fallToBottom(board) {
     }
 }
 
-describe("Rotate Falling tetrominoes", () => {
+describe("Clear full lines", () => {
     let board;
     beforeEach(() => {
         board = new Board(10, 6);
