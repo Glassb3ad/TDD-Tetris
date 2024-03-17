@@ -79,4 +79,42 @@ describe("Rotate Falling tetrominoes", () => {
             ..........`
         );
     });
+
+    test("Non-bottom line can be cleared", () => {
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.T_SHAPE);
+        board.rotateRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        expect(board.toString()).to.equalShape(
+            `..........
+            ..........
+            ..........
+            ..........
+            .........T
+            IIIIIIII.T`
+        );
+    });
 });
