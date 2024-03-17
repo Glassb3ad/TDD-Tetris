@@ -106,8 +106,8 @@ export class Board {
   }
 
   rotate(block) {
-    if (this.replaceFalling(block)) return
-    if (this.canTryWallKick(block)) { return this.tryWallKick() }
+    if (this.replaceFalling(block)) return;
+    return this.tryWallKick(block)
   }
 
   replaceFalling(block) {
@@ -124,9 +124,12 @@ export class Board {
     return !this.isInsideBoard(block) && this.isAboveBottom(block)
   }
 
-  tryWallKick() {
-    return this.moveRight() || this.moveLeft()
+  tryWallKick(block) {
+    if (this.canTryWallKick(block)) {
+      return (this.moveRight() || this.moveLeft())
+    }
   }
+
   occupiesXY(x, y, block) { return this.hasFalling() && this.coversXY(x, y, block) && block.shape[block.y - y][x - block.x] !== "." }
 
   coversXY(x, y, block) {
