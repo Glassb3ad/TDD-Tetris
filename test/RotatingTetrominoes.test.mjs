@@ -125,4 +125,12 @@ describe("The J shape", () => {
        ..J`
     );
   });
+
+  test("can be rotated right/clockwise", () => {
+    expect(shape.rotateRight().toString()).to.equalShape(
+      `.J.
+       .J.
+       JJ.`
+    );
+  });
 });
