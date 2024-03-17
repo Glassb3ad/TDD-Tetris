@@ -83,7 +83,7 @@ describe("The I shape", () => {
   });
 
   test("has 2 distinct orientations", () => {
-    expect(distinctOrientations(shape).size).to.equal(2);
+    expect(distinctOrientations(shape2).size).to.equal(2);
   });
 });
 
