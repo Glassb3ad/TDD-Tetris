@@ -102,8 +102,7 @@ export class Board {
   }
 
   moveRight() {
-    const blockMovedRight = this.falling.moveRight()
-    return this.move(blockMovedRight)
+    return this.move(this.falling.moveRight())
   }
 
   move(block) {
