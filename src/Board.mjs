@@ -89,17 +89,16 @@ export class Board {
   }
 
   rotateLeft() {
-    this.rotate(this.falling.tetromino.rotateLeft())
+    this.rotate(new Block({ x: this.falling.x, y: this.falling.y, tetromino: this.falling.tetromino.rotateLeft() }))
   }
 
   rotateRight() {
-    this.rotate(this.falling.tetromino.rotateRight())
+    this.rotate(new Block({ x: this.falling.x, y: this.falling.y, tetromino: this.falling.tetromino.rotateRight() }))
   }
 
-  rotate(tetromino) {
-    const newBlock = new Block({ x: this.falling.x, y: this.falling.y, tetromino });
-    if (this.canOccupyBoard(newBlock)) { this.falling = newBlock }
-    if (this.canTryWallKick(newBlock)) { return this.tryWallKick() }
+  rotate(block) {
+    if (this.canOccupyBoard(block)) { this.falling = block }
+    if (this.canTryWallKick(block)) { return this.tryWallKick() }
   }
 
   canTryWallKick(block) {
