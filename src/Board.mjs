@@ -78,7 +78,8 @@ export class Board {
     this.dropped.forEach((val, key) => {
       const xy = key.split("").map(a => Number.parseInt(a))
       if (xy[1] === y) { return }; newDropped.set(`${xy[0]}${xy[1] - 1}`, val)
-    }); this.dropped = newDropped
+    });
+    this.dropped = newDropped
   }
 
   lineFull(y) {
@@ -89,7 +90,10 @@ export class Board {
     return full
   }
 
-  clearFullLines() { if (this.lineFull(0)) this.clearLine(0) }
+  clearFullLines() {
+    if (this.lineFull(0)) this.clearLine(0)
+  }
+
   hasFalling() {
     return !!this.falling
   }
