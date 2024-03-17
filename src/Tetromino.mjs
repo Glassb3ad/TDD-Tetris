@@ -45,20 +45,21 @@ const getDirectionMap = (tetromino) => {
 }
 export class Tetromino {
     shape;
-    constructor(shape, direction) {
+    constructor(shape, direction, type) {
         this.shape = new RotatingShape(shape)
         this.direction = direction || "UP"
+        this.type = type
     }
 
-    static T_SHAPE = new Tetromino([[".", "T", "."], ["T", "T", "T"], [".", ".", "."]])
+    static T_SHAPE = new Tetromino([[".", "T", "."], ["T", "T", "T"], [".", ".", "."]], "T")
     static I_SHAPE = new Tetromino([
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."],
         ["I", "I", "I", "I", "."],
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."]
-    ])
-    static O_SHAPE = new Tetromino([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]])
+    ], "I")
+    static O_SHAPE = new Tetromino([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]], "O")
 
     rotateDirectionLeft(tetromino, shapeDirectionMap) {
         switch (tetromino.direction) {
