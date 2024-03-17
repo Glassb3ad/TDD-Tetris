@@ -58,6 +58,11 @@ export class Board {
     this.width = width;
     this.height = height;
     this.dropped = new Map();
+    this.scoreCounters = []
+  }
+
+  subscribe(counter) {
+    this.scoreCounters.add(counter)
   }
 
   drop(c) {
