@@ -118,7 +118,7 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Cant floow kick", () => {
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
         board.tick()
         board.tick()
         board.tick()
