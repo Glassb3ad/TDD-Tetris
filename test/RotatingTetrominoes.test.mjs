@@ -44,7 +44,7 @@ describe("The T shape", () => {
   });
 
   test("has 4 distinct orientations", () => {
-    expect(distinctOrientations(shape).size).to.equal(4);
+    expect(distinctOrientations(shape2).size).to.equal(4);
   });
 });
 
