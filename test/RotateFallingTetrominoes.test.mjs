@@ -2,6 +2,9 @@ import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
+import { Tetromino2 } from "../src/Tetromino.mjs";
+
+const CUSTOM_TETROMINO_SHAPE = [[".", "T", "."], ["T", "T", "T"], [".", ".", "."]]
 
 function fallToBottom(board) {
     for (let i = 0; i < 10; i++) {
@@ -16,7 +19,7 @@ describe("Rotate Falling tetrominoes", () => {
     });
 
     test("Can be rotated left", () => {
-        board.drop(Tetromino.T_SHAPE);
+        board.drop(new Tetromino2(CUSTOM_TETROMINO_SHAPE));
         board.rotateLeft()
         expect(board.toString()).to.equalShape(
             `....T.....
