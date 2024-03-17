@@ -1,14 +1,14 @@
 import { RotatingShape } from "./RotatingShape.mjs";
 
 const I_SHAPE_DIRECTION_MAP = {
-    "UP": [
+    "LEFT": [
         [".", ".", "I", ".", "."],
         [".", ".", "I", ".", "."],
         [".", ".", "I", ".", "."],
         [".", ".", "I", ".", "."],
         [".", ".", ".", ".", "."]
     ],
-    "LEFT": [
+    "UP": [
         [".", ".", ".", ".", "."],
         ["I", "I", "I", "I", "."],
         [".", ".", ".", ".", "."],
@@ -93,13 +93,7 @@ export class Tetromino2 {
     }
 
     static T_SHAPE = new Tetromino2(T_SHAPE_DIRECTION_MAP.UP)
-    static I_SHAPE = new Tetromino([
-        [".", ".", ".", ".", "."],
-        [".", ".", ".", ".", "."],
-        ["I", "I", "I", "I", "."],
-        [".", ".", ".", ".", "."],
-        [".", ".", ".", ".", "."]
-    ])
+    static I_SHAPE = new Tetromino2(I_SHAPE_DIRECTION_MAP.UP)
     static O_SHAPE = new Tetromino2([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]])
 
     rotateDirectionLeft(tetromino, shapeDirectionMap) {
