@@ -96,7 +96,7 @@ export class Tetromino2 {
 
     static T_SHAPE = new Tetromino2(T_SHAPE_DIRECTION_MAP.UP, null, "T")
     static I_SHAPE = new Tetromino2(I_SHAPE_DIRECTION_MAP.UP, null, "I")
-    static O_SHAPE = new Tetromino2([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]])
+    static O_SHAPE = new Tetromino2([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]], null, "O")
 
     rotateDirectionLeft(tetromino, shapeDirectionMap) {
         switch (tetromino.direction) {
@@ -121,12 +121,12 @@ export class Tetromino2 {
     }
 
     rotateRight() {
-        if (this.shape.shape.some(a => a.includes("O"))) return this
+        if (this.type === "O") return this
         return this.rotateDirectionRight(this, getDirectionMap(this.type))
     }
 
     rotateLeft() {
-        if (this.shape.shape.some(a => a.includes("O"))) return this
+        if (this.type === "O") return this
         return this.rotateDirectionLeft(this, getDirectionMap(this.type))
     }
 }
