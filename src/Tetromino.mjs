@@ -47,6 +47,8 @@ const J_SHAPE_DIRECTION_MAP = {
 
 const L_SHAPE_DIRECTION_MAP = {
     "UP": [[".", ".", "."], ["L", "L", "L"], ["L", ".", "."]],
+    "RIGHT": [["L", "L", "."], [".", "L", "."], [".", "L", "."]],
+
 }
 
 const O_SHAPE_DIRECTION_MAP = {

@@ -157,23 +157,23 @@ describe("The L shape", () => {
     );
   });
 
-  /*  test("can be rotated right/clockwise", () => {
-     expect(shape.rotateRight().toString()).to.equalShape(
-       `.J.
-        .J.
-        JJ.`
-     );
-   });
- 
-   test("can be rotated left/counter-clockwise", () => {
-     expect(shape.rotateLeft().toString()).to.equalShape(
-       `.JJ
-        .J.
-        .J.`
-     );
-   });
- 
-   test("has 4 distinct orientations", () => {
-     expect(distinctOrientations(shape).size).to.equal(4);
-   }); */
+  test("can be rotated right/clockwise", () => {
+    expect(shape.rotateRight().toString()).to.equalShape(
+      `LL.
+        .L.
+        .L.`
+    );
+  });
+  /*
+    test("can be rotated left/counter-clockwise", () => {
+      expect(shape.rotateLeft().toString()).to.equalShape(
+        `.JJ
+         .J.
+         .J.`
+      );
+    });
+  
+    test("has 4 distinct orientations", () => {
+      expect(distinctOrientations(shape).size).to.equal(4);
+    }); */
 });
