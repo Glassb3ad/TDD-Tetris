@@ -79,8 +79,9 @@ export class Board {
 
   tick() {
     if (!this.hasFalling()) return
-    if (this.canOccupyBoard(this.falling.moveDown())) {
-      this.falling.y = this.falling.y - 1
+    const blockMovedDown = this.falling.moveDown()
+    if (this.canOccupyBoard(blockMovedDown)) {
+      this.falling = blockMovedDown
     }
     else {
       this.stopBlock(this.falling)
