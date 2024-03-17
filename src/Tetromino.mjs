@@ -55,7 +55,7 @@ export class Tetromino2 {
         this.direction = direction || "UP"
     }
 
-    static T_SHAPE = new Tetromino(T_SHAPE_DIRECTION_MAP.UP)
+    static T_SHAPE = new Tetromino2(T_SHAPE_DIRECTION_MAP.UP)
     static I_SHAPE = new Tetromino([
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."],
@@ -63,17 +63,19 @@ export class Tetromino2 {
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."]
     ])
-    static O_SHAPE = new Tetromino([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]])
+    static O_SHAPE = new Tetromino2([[".", "O", "O"], [".", "O", "O"], [".", ".", "."]])
 
     rotateDirectionLeft(tetromino, shapeDirectionMap) {
+        console.log(tetromino)
         switch (tetromino.direction) {
-            case "UP": return new Tetromino(shapeDirectionMap.LEFT, "LEFT")
-            case "LEFT": return new Tetromino(shapeDirectionMap.DOWN, "DOWN")
-            case "DOWN": return new Tetromino(shapeDirectionMap.RIGHT, "RIGHT")
-            case "RIGHT": return new Tetromino(shapeDirectionMap.UP, "UP")
+            case "UP": return new Tetromino2(shapeDirectionMap.LEFT, "LEFT")
+            case "LEFT": return new Tetromino2(shapeDirectionMap.DOWN, "DOWN")
+            case "DOWN": return new Tetromino2(shapeDirectionMap.RIGHT, "RIGHT")
+            case "RIGHT": return new Tetromino2(shapeDirectionMap.UP, "UP")
         }
     }
     toString() {
+        console.log(this.shape)
         return this.shape.toString()
     }
 
@@ -84,8 +86,10 @@ export class Tetromino2 {
     }
 
     rotateLeft() {
+        console.log(this.shape)
         if (this.shape.shape[2][0] === "I") return this.rotateRight()
         if (this.shape.shape.some(a => a.includes("O"))) return this
+        console.log(this.direction)
         return this.rotateDirectionLeft(this, T_SHAPE_DIRECTION_MAP)
     }
 }
