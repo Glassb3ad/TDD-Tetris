@@ -23,6 +23,14 @@ class Block {
     })
   }
 
+  moveDown() {
+    return new Block({
+      x: this.x,
+      y: this.y - 1,
+      tetromino: this.tetromino
+    })
+  }
+
   rotateLeft() {
     return new Block({
       x: this.x,
@@ -71,7 +79,7 @@ export class Board {
 
   tick() {
     if (!this.hasFalling()) return
-    if (this.canOccupyBoard({ ...this.falling, y: this.falling.y - 1 })) {
+    if (this.canOccupyBoard(this.falling.moveDown())) {
       this.falling.y = this.falling.y - 1
     }
     else {
