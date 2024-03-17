@@ -82,9 +82,8 @@ export class Board {
   }
 
   moveDown() {
-    if (!this.hasFalling()) return
-    if (this.replaceFalling(this.falling.moveDown())) return
-    else {
+    if (this.replaceFalling(this.falling?.moveDown())) return
+    else if (this.hasFalling()) {
       this.stopBlock(this.falling)
       this.falling = null
     }
