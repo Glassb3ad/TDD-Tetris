@@ -68,8 +68,9 @@ export class Board {
   }
 
   moveRight() {
-    if (this.canOccupyBoard({ ...this.falling, x: this.falling.x + 1 })) {
-      this.falling.x = this.falling.x + 1
+    const blockMovedRight = this.falling.moveRight()
+    if (this.canOccupyBoard(blockMovedRight)) {
+      this.falling = blockMovedRight
       return true
     }
   }
