@@ -55,7 +55,7 @@ export class Tetromino2 {
         this.direction = direction || "UP"
     }
 
-    static T_SHAPE = new Tetromino([[".", "T", "."], ["T", "T", "T"], [".", ".", "."]])
+    static T_SHAPE = new Tetromino(T_SHAPE_DIRECTION_MAP.UP)
     static I_SHAPE = new Tetromino([
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."],
