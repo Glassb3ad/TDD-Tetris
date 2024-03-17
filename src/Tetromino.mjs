@@ -4,7 +4,9 @@ export class Tetromino {
     shape;
     constructor(shape) {
         this.shape = new RotatingShape(shape)
+        this.position = "UP"
     }
+
     static T_SHAPE = new Tetromino([[".", "T", "."], ["T", "T", "T"], [".", ".", "."]])
     static I_SHAPE = new Tetromino([
         [".", ".", ".", ".", "."],
