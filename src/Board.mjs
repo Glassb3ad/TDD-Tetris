@@ -117,17 +117,18 @@ export class Board {
     }
   }
 
-  canOccupyBoard(block) {
-    return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
-  }
-  canTryWallKick(block) {
-    return !this.isInsideBoard(block) && this.isAboveBottom(block)
-  }
-
   tryWallKick(block) {
     if (this.canTryWallKick(block)) {
       return (this.moveRight() || this.moveLeft())
     }
+  }
+
+  canTryWallKick(block) {
+    return !this.isInsideBoard(block) && this.isAboveBottom(block)
+  }
+
+  canOccupyBoard(block) {
+    return block && this.isInsideBoard(block) && !this.occupiesDropped(block)
   }
 
   occupiesXY(x, y, block) { return this.hasFalling() && this.coversXY(x, y, block) && block.shape[block.y - y][x - block.x] !== "." }
