@@ -196,4 +196,65 @@ describe("Nintendo scoring system", () => {
         );
         expect(scoreCounter.getScore()).to.equal(100)
     });
+
+    test("Clearing 3 lines equals 300 point increase", () => {
+        const scoreCounter = new NintendoScoreSystem()
+        board.subscribe(scoreCounter);
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.rotateLeft()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.rotateLeft()
+        fallToBottom(board)
+        expect(board.toString()).to.equalShape(
+            `..........
+            ..........
+            ..........
+            ..........
+            ..........
+            ........II`
+        );
+        expect(scoreCounter.getScore()).to.equal(300)
+    });
 });
