@@ -327,4 +327,36 @@ describe("Nintendo scoring system", () => {
         );
         expect(scoreCounter.getScore()).to.equal(1200)
     });
+
+    test("One cleared line on level n equals 40 * (n + 1)", () => {
+        const scoreCounter = new NintendoScoreSystem()
+        scoreCounter.setLevel(3);
+        board.subscribe(scoreCounter);
+        board.drop(Tetromino.I_SHAPE);
+        board.moveLeft()
+        board.moveLeft()
+        board.moveLeft()
+        fallToBottom(board)
+        board.drop(Tetromino.I_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        board.drop(Tetromino.O_SHAPE);
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        board.moveRight()
+        fallToBottom(board)
+        expect(board.toString()).to.equalShape(
+            `..........
+            ..........
+            ..........
+            ..........
+            ..........
+            ........OO`
+        );
+        expect(scoreCounter.getScore()).to.equal(40 * (3 + 1))
+    });
 });

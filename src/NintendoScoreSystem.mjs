@@ -1,15 +1,19 @@
-const LEVEL_ZERO_MAP = {
-    1: 40,
-    2: 100,
-    3: 300,
-    4: 1200
+const LEVEL_POINTS_MAP = {
+    1: (l) => 40 * (l + 1),
+    2: () => 100,
+    3: () => 300,
+    4: () => 1200
 }
 export class NintendoScoreSystem {
-    constructor() { this.score = 0 }
+    constructor() {
+        this.score = 0
+        this.level = 0
+    }
     update(linesCleared) {
-        this.score = this.score + LEVEL_ZERO_MAP[linesCleared]
+        this.score = this.score + LEVEL_POINTS_MAP[linesCleared](this.level)
     }
     getScore() {
         return this.score
     }
+    setLevel(level) { this.level = level }
 }
