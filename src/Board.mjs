@@ -107,7 +107,7 @@ export class Board {
   }
 
   rotate(block) {
-    if (this.canOccupyBoard(block)) { this.falling = block }
+    if (this.replaceFalling(block)) return
     if (this.canTryWallKick(block)) { return this.tryWallKick() }
   }
 
