@@ -22,6 +22,13 @@ const I_SHAPE_DIRECTION_MAP = {
         [".", ".", "I", ".", "."],
         [".", ".", ".", ".", "."]
     ]],
+    "RIGHT": [[
+        [".", ".", ".", ".", "."],
+        ["I", "I", "I", "I", "."],
+        [".", ".", ".", ".", "."],
+        [".", ".", ".", ".", "."],
+        [".", ".", ".", ".", "."]
+    ]],
 }
 
 const T_SHAPE_DIRECTION_MAP = {
@@ -108,7 +115,6 @@ export class Tetromino2 {
     }
 
     toString() {
-        console.log(this.shape)
         return this.shape.toString()
     }
 
