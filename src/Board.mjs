@@ -73,17 +73,6 @@ export class Board {
     }
   }
 
-  clearLine(y) {
-    const newDropped = new Map()
-    this.dropped.forEach((val, key) => {
-      const xy = key.split("").map(a => Number.parseInt(a))
-      if (xy[1] === y) return
-      if (xy[1] < y) return newDropped.set(`${xy[0]}${xy[1]}`, val)
-      return newDropped.set(`${xy[0]}${xy[1] - 1}`, val)
-    });
-    this.dropped = newDropped
-  }
-
   clearFullLines() {
     for (let y = this.height - 1; y >= 0; y--)
       if (this.lineFull(y)) this.clearLine(y)
@@ -97,6 +86,16 @@ export class Board {
     return full
   }
 
+  clearLine(y) {
+    const newDropped = new Map()
+    this.dropped.forEach((val, key) => {
+      const xy = key.split("").map(a => Number.parseInt(a))
+      if (xy[1] === y) return
+      if (xy[1] < y) return newDropped.set(`${xy[0]}${xy[1]}`, val)
+      return newDropped.set(`${xy[0]}${xy[1] - 1}`, val)
+    });
+    this.dropped = newDropped
+  }
 
   hasFalling() {
     return !!this.falling
